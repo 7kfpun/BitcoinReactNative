@@ -37,7 +37,6 @@ class BitcoinStore {
 
     bitcoin().then((bitcoinData) => {
       let timestamp = bitcoinData.timestamp;
-      console.log(bitcoinData);
       delete bitcoinData.timestamp;
       that.setState({
         timestamp: timestamp,
@@ -71,12 +70,14 @@ class BitcoinStore {
       });
 
       bitcoin().then((bitcoinData) => {
+        let timestamp = bitcoinData.timestamp;
         delete bitcoinData.timestamp;
-        console.log(bitcoinData);
         that.setState({
+          timestamp: timestamp,
           bitcoinData: bitcoinData,
         });
         store.save('bitcoinData', bitcoinData);
+        store.save('timestamp', timestamp);
       });
     });
   }
