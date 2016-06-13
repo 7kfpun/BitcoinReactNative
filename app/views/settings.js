@@ -1,0 +1,104 @@
+import React from 'react';
+import {
+  Alert,
+  Linking,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
+
+// 3rd party libraries
+import { AdMobBanner } from 'react-native-admob';
+import {
+  Cell,
+  Section,
+  TableView
+} from 'react-native-tableview-simple';
+import GoogleAnalytics from 'react-native-google-analytics-bridge';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import NavigationBar from 'react-native-navbar';
+
+import { config } from '../config';
+
+export default class Main extends React.Component {
+  renderToolbar() {
+    if (Platform.OS === 'ios') {
+      return (
+        <NavigationBar
+          statusBar={{tintColor: '#455A64', style: 'light-content'}}
+          style={styles.navigatorBarIOS}
+          title={{title: this.props.title, tintColor: 'white'}}
+        />
+      );
+    } else if (Platform.OS === 'android') {
+      return (
+        <Icon.ToolbarAndroid
+          style={styles.toolbar}
+          title={this.props.title}
+          titleColor="white"
+        />
+      );
+    }
+  }
+
+  render() {
+    GoogleAnalytics.trackScreenView('main');
+    return (
+      <View style={styles.container}>
+        {this.renderToolbar()}
+
+        <ScrollView contentContainerStyle={styles.stage}>
+          <TableView>
+            <Section header="INFO">
+              <Cell cellstyle="RightDetail" title="Disclaimer" onPress={() => Alert.alert(
+                'Alert Title',
+                'All data is gathered from Bitcoin Average, we do not guarantee its accuracy for any use.\n\nNothing presented here is an investment recommendation and any data or content should not be relied upon for any investment activities.\n\nIn no event will we be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this app.',
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ]
+              )} />
+              <Cell cellstyle="RightDetail" title="View More by This Developer" onPress={() => {
+                if (Platform.OS === 'ios') {
+                  Linking.openURL('https://itunes.apple.com/us/developer/kf-pun/id1116896894');
+                } else if (Platform.OS === 'android') {
+                  Linking.openURL('https://play.google.com/store/apps/developer?id=Kf');
+                }}}
+              />
+            </Section>
+          </TableView>
+        </ScrollView>
+
+        {Platform.OS === 'android' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.android} />}
+        {Platform.OS === 'ios' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.ios} />}
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#EEEEEE',
+    marginBottom: 50,
+  },
+  navigatorBarIOS: {
+    backgroundColor: '#455A64',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#37474F',
+  },
+  navigatorLeftButton: {
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingRight: 50,
+  },
+  navigatorRightButton: {
+    paddingTop: 10,
+    paddingLeft: 50,
+    paddingRight: 10,
+  },
+  toolbar: {
+    height: 56,
+    backgroundColor: '#202020',
+  },
+});
