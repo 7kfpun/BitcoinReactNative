@@ -52,7 +52,7 @@ export default class Main extends React.Component {
           <TableView>
             <Section header="INFO">
               <Cell cellstyle="RightDetail" title="Disclaimer" onPress={() => Alert.alert(
-                'Alert Title',
+                'Disclaimer',
                 'All data is gathered from Bitcoin Average, we do not guarantee its accuracy for any use.\n\nNothing presented here is an investment recommendation and any data or content should not be relied upon for any investment activities.\n\nIn no event will we be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this app.',
                 [
                   {text: 'OK', onPress: () => console.log('OK Pressed')},
