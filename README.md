@@ -1,7 +1,6 @@
 # BitcoinReactNative
 
-[![Dependency Status](https://img.shields.io/david/7kfpun/BitcoinReactNative.svg)](https://img.shields.io/david/7kfpun/BitcoinReactNative)
-[![devDependency Status](https://img.shields.io/david/dev/7kfpun/BitcoinReactNative.svg)](https://github.com/7kfpun/BitcoinReactNative#info=devDependencies)
+[![Dependency Status](https://david-dm.org/7kfpun/BitcoinReactNative.svg)](https://david-dm.org/7kfpun/BitcoinReactNative) [![devDependency Status](https://david-dm.org/7kfpun/BitcoinReactNative/dev-status.svg)](https://david-dm.org/7kfpun/BitcoinReactNative#info=devDependencies)
 
 Bitcoin Calculator App written in [React Native](https://github.com/facebook/react-native) (available both iOS and Android). Data is pulled from [Bitcoin Average](https://api.bitcoinaverage.com/ticker/global/all).
 
@@ -21,8 +20,8 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 
 ## React and React Native version
 
-* react: 15.0.2
-* react-native: 0.26.3
+* [react](https://github.com/facebook/react): 15.0.2
+* [react-native](https://github.com/facebook/react-native): 0.26.3
 
 ## Plugins used
 
