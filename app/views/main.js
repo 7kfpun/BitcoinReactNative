@@ -15,7 +15,7 @@ import CurrencyStore from '../stores/currency-store';
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
-import { AdMobBanner } from 'react-native-admob';
+import { AdMobBanner, AdMobInterstitial } from 'react-native-admob';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
@@ -42,6 +42,12 @@ export default class Main extends React.Component {
   }
 
   componentDidMount() {
+    timer.clearTimeout(this);
+    AdMobInterstitial.setAdUnitID(config.adUnitID.iosInterstital);
+    timer.setTimeout(this, 'AdMobInterstitial', () => {
+      AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log(error)));
+    }, 4000);
+
     CurrencyStore.listen((state) => this.onCurrencyStoreChange(state));
 
     this.prepareRows();
