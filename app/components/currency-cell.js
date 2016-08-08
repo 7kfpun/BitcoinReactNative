@@ -6,10 +6,21 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import currencies from '../utils/currencies';
+
 export default class CurrencyCell extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      text: '0',
+    };
+  }
+
   render() {
     return (
-      <TouchableHighlight>
+      <TouchableHighlight
+        onPress={() => console.log('this.props.stock')} underlayColor="#202020">
         <View>
           {this.props.btctoothers && <View style={styles.container}>
             <View style={styles.firstBlock}>
@@ -28,6 +39,7 @@ export default class CurrencyCell extends React.Component {
                     </Text>
                     {' ' + this.props.currency}
                   </Text>}
+              <Text style={styles.currencyName}>{currencies[this.props.currency]}</Text>
             </View>
           </View>}
           {!this.props.btctoothers && <View style={styles.container}>
@@ -35,6 +47,7 @@ export default class CurrencyCell extends React.Component {
               <Text style={styles.firstBlockText}>
                 {this.props.unit + ' ' + this.props.currency}
               </Text>
+              <Text style={[styles.currencyName, {textAlign: 'left'}]}>{currencies[this.props.currency]}</Text>
             </View>
             <View style={styles.secondBlock}>
               {this.props.bitcoinData && this.props.bitcoinData[this.props.currency]
@@ -60,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     flexDirection: 'row',
-    height: 50,
+    height: 60,
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomColor: '#CCCCCC',
@@ -92,5 +105,10 @@ const styles = StyleSheet.create({
   },
   priceGreenText: {
     color: '#53D769',
+  },
+  currencyName: {
+    fontSize: 12,
+    color: 'grey',
+    textAlign: 'right',
   },
 });

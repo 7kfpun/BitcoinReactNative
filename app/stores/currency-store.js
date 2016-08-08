@@ -16,6 +16,10 @@ class BitcoinStore {
       if (!currencies) {
         currencies = ['USD', 'EUR', 'CNY', 'GBP', 'CAD'];
       }
+      if (currencies[0] === 'BTC') {
+        // currencies = ['BTC'].concat(currencies);
+        currencies.shift();
+      }
       that.setState({
         currencies: currencies,
       });
