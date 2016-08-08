@@ -6,6 +6,9 @@ import {
   StyleSheet,
 } from 'react-native';
 
+// 3rd party libraries
+import { Actions } from 'react-native-router-flux';
+
 import currencies from '../utils/currencies';
 
 export default class CurrencyCell extends React.Component {
@@ -20,7 +23,12 @@ export default class CurrencyCell extends React.Component {
   render() {
     return (
       <TouchableHighlight
-        onPress={() => console.log('this.props.stock')} underlayColor="#202020">
+        onPress={() => Actions.details({
+          title: currencies[this.props.currency],
+          btctoothers: this.props.btctoothers,
+          currency: this.props.currency,
+          unit: this.props.unit,
+        })} underlayColor="#202020">
         <View>
           {this.props.btctoothers && <View style={styles.container}>
             <View style={styles.firstBlock}>

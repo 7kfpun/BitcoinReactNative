@@ -59,7 +59,7 @@ export default class Main extends React.Component {
   }
 
   render() {
-    GoogleAnalytics.trackScreenView('main');
+    GoogleAnalytics.trackScreenView('settings');
     return (
       <View style={styles.container}>
         {this.renderToolbar()}

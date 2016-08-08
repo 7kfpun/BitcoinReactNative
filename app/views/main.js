@@ -46,7 +46,7 @@ export default class Main extends React.Component {
     AdMobInterstitial.setAdUnitID(config.adUnitID.iosInterstital);
     timer.setTimeout(this, 'AdMobInterstitial', () => {
       AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log(error)));
-    }, 1000 * 60);
+    }, 1000 * 10);
 
     CurrencyStore.listen((state) => this.onCurrencyStoreChange(state));
 

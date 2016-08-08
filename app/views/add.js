@@ -30,10 +30,7 @@ export default class Main extends React.Component {
   componentDidMount() {
     CurrencyStore.listen((state) => this.onCurrencyStoreChange(state));
 
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(Object.keys(this.state.bitcoinData)),
-      key: Math.random(),
-    });
+    this.prepareRows();
   }
 
   componentWillUnmount() {
@@ -50,6 +47,13 @@ export default class Main extends React.Component {
     if (position === 0) {  // index of 'Done'
       Actions.pop();
     }
+  }
+
+  prepareRows() {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(Object.keys(this.state.bitcoinData)),
+      key: Math.random(),
+    });
   }
 
   renderToolbar() {
@@ -82,7 +86,7 @@ export default class Main extends React.Component {
   }
 
   render() {
-    GoogleAnalytics.trackScreenView('main');
+    GoogleAnalytics.trackScreenView('add');
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
