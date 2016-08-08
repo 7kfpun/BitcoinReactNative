@@ -46,7 +46,7 @@ export default class Main extends React.Component {
     AdMobInterstitial.setAdUnitID(config.adUnitID.iosInterstital);
     timer.setTimeout(this, 'AdMobInterstitial', () => {
       AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log(error)));
-    }, 4000);
+    }, 1000 * 60);
 
     CurrencyStore.listen((state) => this.onCurrencyStoreChange(state));
 
@@ -79,6 +79,8 @@ export default class Main extends React.Component {
   onActionSelected(position) {
     if (position === 0) {  // index of 'Add'
       Actions.add();
+    } else if (position === 1) {  // index of 'Settings'
+      Actions.settings();
     }
   }
 
@@ -89,6 +91,12 @@ export default class Main extends React.Component {
           statusBar={{tintColor: '#455A64', style: 'light-content'}}
           style={styles.navigatorBarIOS}
           title={{title: this.props.title, tintColor: 'white'}}
+          leftButton={<Icon
+                        style={styles.navigatorLeftButton}
+                        name="info-outline"
+                        size={26}
+                        color="white"
+                        onPress={Actions.settings} />}
           rightButton={<Icon
                         style={styles.navigatorRightButton}
                         name="add"
@@ -105,6 +113,7 @@ export default class Main extends React.Component {
           titleColor="white"
           actions={[
             {title: 'Add', iconName: 'add', iconSize: 26, show: 'always'},
+            {title: 'Settings', iconName: 'info-outline', iconSize: 26, show: 'always'},
           ]}
           onActionSelected={(position) => this.onActionSelected(position)}
         />
@@ -142,12 +151,13 @@ export default class Main extends React.Component {
             })}>
             <View>
               {this.state.btctoothers && <View style={styles.convert}>
-                <Text>{this.state.value} bitcoin</Text>
+                {this.state.value <= 1 && <Text>{this.state.value} bitcoin</Text>}
+                {this.state.value > 1 && <Text>{this.state.value} bitcoins</Text>}
                 <Icon style={{marginHorizontal: 15}} name="compare-arrows" size={20} />
-                <Text>x currency</Text>
+                <Text>x unit(s)</Text>
               </View>}
               {!this.state.btctoothers && <View style={styles.convert}>
-                <Text>{this.state.value} currency</Text>
+                <Text>{this.state.value} unit(s)</Text>
                 <Icon style={{marginHorizontal: 15}} name="compare-arrows" size={20} />
                 <Text>x bitcoin(s)</Text>
               </View>}
@@ -159,7 +169,7 @@ export default class Main extends React.Component {
             step={1}
             minimumTrackTintColor="#1FB28A"
             maximumTrackTintColor="#D3D3D3"
-            thumbTintColor="#1A9274"
+            thumbStyle={styles.thumb}
             value={this.state.value}
             onValueChange={(value) => {this.setState({value}); this.setState({key: Math.random()});}} />
           <View style={styles.timestampBlock}>
@@ -178,7 +188,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EEEEEE',
-    marginBottom: 50,
   },
   navigatorBarIOS: {
     backgroundColor: '#455A64',
@@ -217,5 +226,13 @@ const styles = StyleSheet.create({
   timestampBlock: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  thumb: {
+    width: 35,
+    height: 35,
+    borderRadius: 35 / 2,
+    backgroundColor: 'white',
+    borderColor: '#30A935',
+    borderWidth: 2,
   },
 });
