@@ -18,6 +18,7 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 
 <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid0.png" width="280">
 <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid1.png" width="280">
+<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid2.png" width="280">
 
 ## React and React Native version
 
