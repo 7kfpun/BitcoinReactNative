@@ -30,7 +30,7 @@
   "homepage": "https://github.com/7kfpun/BitcoinReactNative#readme",
   "dependencies": {
     "alt": "^0.18.4",
-    "moment": "^2.13.0",
+    "moment": "^2.14.1",
     "react": "15.0.2",
     "react-native": "0.26.3",
     "react-native-admob": "^1.1.2",
@@ -38,8 +38,8 @@
     "react-native-navbar": "^1.5.0",
     "react-native-router-flux": "^3.26.24",
     "react-native-simple-store": "^1.0.1",
-    "react-native-slider": "^0.9.0",
-    "react-native-tableview-simple": "^0.10.1",
+    "react-native-slider": "^0.9.1",
+    "react-native-tableview-simple": "^0.12.0",
     "react-native-timer": "^1.1.2",
     "react-native-vector-icons": "^2.0.3"
   },
