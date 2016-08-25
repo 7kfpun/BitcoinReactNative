@@ -80,7 +80,7 @@ export default class Main extends React.Component {
     if (position === 0) {  // index of 'Add'
       Actions.add();
     } else if (position === 1) {  // index of 'Settings'
-      Actions.settings();
+      Actions.more();
     }
   }
 
@@ -96,7 +96,7 @@ export default class Main extends React.Component {
                         name="info-outline"
                         size={26}
                         color="white"
-                        onPress={Actions.settings} />}
+                        onPress={Actions.more} />}
           rightButton={<Icon
                         style={styles.navigatorRightButton}
                         name="add"

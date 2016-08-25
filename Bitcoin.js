@@ -13,7 +13,7 @@ GoogleAnalytics.setTrackerId(config.trackerId);
 
 // Views
 import MainView from './app/views/main';
-import SettingsView from './app/views/settings';
+import MoreView from './app/views/more';
 import AddView from './app/views/add';
 import DetailsView from './app/views/details';
 
@@ -26,7 +26,7 @@ console.ignoredYellowBox = [
 const scenes = Actions.create(
   <Scene key="root">
     <Scene key="main" title="Bitcoin Calculator" component={MainView} hideNavBar={true} initial={true} />
-    <Scene key="settings" title="Settings" component={SettingsView} hideNavBar={true} direction="vertical"/>
+    <Scene key="more" title="More" component={MoreView} hideNavBar={true} direction="vertical"/>
     <Scene key="add" title="Add" component={AddView} hideNavBar={true} direction="vertical"/>
     <Scene key="details" title="Details" component={DetailsView} hideNavBar={true} />
   </Scene>
