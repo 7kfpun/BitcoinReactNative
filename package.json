@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/7kfpun/BitcoinReactNative#readme",
   "dependencies": {
-    "alt": "^0.18.4",
+    "alt": "^0.18.5",
     "moment": "^2.14.1",
     "react": "15.0.2",
     "react-native": "0.26.3",

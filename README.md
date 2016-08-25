@@ -1,6 +1,6 @@
 # BitcoinReactNative
 
-[![Dependency Status](https://david-dm.org/7kfpun/BitcoinReactNative.svg)](https://david-dm.org/7kfpun/BitcoinReactNative) [![devDependency Status](https://david-dm.org/7kfpun/BitcoinReactNative/dev-status.svg)](https://david-dm.org/7kfpun/BitcoinReactNative#info=devDependencies)
+[![Dependency Status](https://david-dm.org/7kfpun/BitcoinReactNative.svg)](https://david-dm.org/7kfpun/BitcoinReactNative) [![devDependency Status](https://david-dm.org/7kfpun/BitcoinReactNative/dev-status.svg)](https://david-dm.org/7kfpun/BitcoinReactNative?type=dev)
 
 Bitcoin Calculator App written in [React Native](https://github.com/facebook/react-native) (available both iOS and Android). Data is pulled from [Bitcoin Average](https://api.bitcoinaverage.com/ticker/global/all).
 
