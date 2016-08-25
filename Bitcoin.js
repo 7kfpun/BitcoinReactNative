@@ -1,17 +1,18 @@
 import React from 'react';
 
 // 3rd party libraries
-import {
-  Actions,
-  Router,
-  Scene,
-} from 'react-native-router-flux';
+import { Actions, Router, Scene } from 'react-native-router-flux';
+import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 
 import I18n from './app/utils/i18n';
-
 import { config } from './app/config';
+
 GoogleAnalytics.setTrackerId(config.trackerId);
+
+if (DeviceInfo.getDeviceName() === 'iPhone Simulator' || DeviceInfo.getManufacturer() === 'Genymotion') {
+  GoogleAnalytics.setDryRun(true);
+}
 
 // Views
 import MainView from './app/views/main';

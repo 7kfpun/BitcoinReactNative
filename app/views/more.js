@@ -20,6 +20,7 @@ import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
 import ReactNativeI18n from 'react-native-i18n';
+
 const deviceLocale = ReactNativeI18n.locale;
 
 import { config } from '../config';
@@ -41,7 +42,7 @@ export default class Main extends React.Component {
           style={styles.navigatorBarIOS}
           title={{title: this.props.title, tintColor: 'white'}}
           rightButton={{
-            title: 'Done',
+            title: I18n.t('done'),
             tintColor: '#3CABDA',
             handler: Actions.pop,
           }}

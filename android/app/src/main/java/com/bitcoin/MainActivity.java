@@ -1,6 +1,7 @@
 package com.bitcoin;
 
 import com.facebook.react.ReactActivity;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
@@ -39,6 +40,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new RNDeviceInfo(),
             new ReactNativeI18n(),
             new GoogleAnalyticsBridgePackage(),
             new RNAdMobPackage(),

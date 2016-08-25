@@ -17,6 +17,8 @@ import NavigationBar from 'react-native-navbar';
 
 import CurrencyManageCell from '../components/currency-manage-cell';
 
+import I18n from '../utils/i18n';
+
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -64,7 +66,7 @@ export default class Main extends React.Component {
           style={styles.navigatorBarIOS}
           title={{title: this.props.title, tintColor: 'white'}}
           rightButton={{
-            title: 'Done',
+            title: I18n.t('done'),
             tintColor: '#3CABDA',
             handler: Actions.pop,
           }}
@@ -77,7 +79,7 @@ export default class Main extends React.Component {
           title={this.props.title}
           titleColor="white"
           actions={[
-            {title: 'Done', iconName: 'check', iconSize: 26, show: 'always'},
+            {title: I18n.t('done'), iconName: 'check', iconSize: 26, show: 'always'},
           ]}
           onActionSelected={(position) => this.onActionSelected(position)}
         />

@@ -19,6 +19,8 @@ import NavigationBar from 'react-native-navbar';
 import { config } from '../config';
 import currencies from '../utils/currencies';
 
+import I18n from '../utils/i18n';
+
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -73,10 +75,10 @@ export default class Main extends React.Component {
   renderDetails() {
     return (
       <View style={{ flex: 1 }}>
-        {this.state.bitcoinData[this.props.currency]['24h_avg'] && <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>24h average:</Text> {this.state.bitcoinData[this.props.currency]['24h_avg']} / BTC</Text>}
-        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>Ask:</Text> {this.state.bitcoinData[this.props.currency].ask} / BTC</Text>
-        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>Bid:</Text> {this.state.bitcoinData[this.props.currency].bid} / BTC</Text>
-        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>Last:</Text> {this.state.bitcoinData[this.props.currency].last} / BTC</Text>
+        {this.state.bitcoinData[this.props.currency]['24h_avg'] && <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('24h_average')}</Text> {this.state.bitcoinData[this.props.currency]['24h_avg']} / BTC</Text>}
+        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('ask')}</Text> {this.state.bitcoinData[this.props.currency].ask} / BTC</Text>
+        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('bid')}</Text> {this.state.bitcoinData[this.props.currency].bid} / BTC</Text>
+        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('last')}:</Text> {this.state.bitcoinData[this.props.currency].last} / BTC</Text>
       </View>
     );
   }
