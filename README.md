@@ -30,13 +30,15 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 * [alt](https://github.com/goatslacker/alt) - Isomorphic flux implementation.
 * [moment](https://github.com/moment/moment) - Parse, validate, manipulate, and display dates in javascript.
 * [react-native-admob](https://github.com/sbugert/react-native-admob) - A react-native component for Google AdMob banners.
+* [react-native-device-info](https://github.com/rebeccahughes/react-native-device-info) - Device Information for React Native iOS and Android.
 * [react-native-google-analytics-bridge](https://github.com/idehub/react-native-google-analytics-bridge) - React Native bridge to the Google Analytics libraries on both iOS and Android.
+* [react-native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n) - React Native + i18n.js.
 * [react-native-navbar](https://github.com/Kureev/react-native-navbar) - Navbar component for React Native.
-* [react-native-router-flux](https://github.com/aksonov/react-native-router-flux) - React Native Router based on new React Native Navigation API (0.26)
+* [react-native-router-flux](https://github.com/aksonov/react-native-router-flux) - React Native Router based on new React Native Navigation API.
 * [react-native-simple-store](https://github.com/jasonmerino/react-native-simple-store) - A minimalistic wrapper around React Native's AsyncStorage.
 * [react-native-slider](https://github.com/jeanregisser/react-native-slider) - A pure JavaScript <Slider> component for react-native.
 * [react-native-tableview-simple](https://github.com/Purii/react-native-tableview-simple) - Flexible and lightweight React Native component for UITableView made with pure CSS.
-* [react-native-timer](https://github.com/fractaltech/react-native-timer) - Manage timers in react-native
+* [react-native-timer](https://github.com/fractaltech/react-native-timer) - Manage timers in react-native.
 * [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - 3000 Customizable Icons for React Native with support for NavBar/TabBar/ToolbarAndroid, image source and full stying.
 
 ## Additional
