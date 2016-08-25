@@ -19,6 +19,8 @@ import {
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
+import ReactNativeI18n from 'react-native-i18n';
+const deviceLocale = ReactNativeI18n.locale;
 
 import { config } from '../config';
 
@@ -67,14 +69,15 @@ export default class Main extends React.Component {
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
             <Section header={I18n.t('info')}>
-              <Cell cellStyle="RightDetail" title={I18n.t('disclaimer')} onPress={() => Alert.alert(
+              <Cell cellStyle="RightDetail" title={I18n.t('language')} detail={deviceLocale} />
+              <Cell cellStyle="Basic" title={I18n.t('disclaimer')} onPress={() => Alert.alert(
                 I18n.t('disclaimer'),
                 I18n.t('disclaimer_full'),
                 [
                   {text: 'OK', onPress: () => console.log('OK Pressed')},
                 ]
               )} />
-              <Cell cellStyle="RightDetail" title={I18n.t('rate_us')} onPress={() => {
+              <Cell cellStyle="Basic" title={I18n.t('rate_us')} onPress={() => {
                 if (Platform.OS === 'ios') {
                   Linking.openURL('itms-apps://itunes.apple.com/app/id1123557731');
                 } else if (Platform.OS === 'android') {
@@ -84,7 +87,7 @@ export default class Main extends React.Component {
             </Section>
 
             <Section header={I18n.t('others')}>
-              <Cell cellStyle="RightDetail" title={I18n.t('view_more_bt_this_developer')} onPress={() => {
+              <Cell cellStyle="Basic" title={I18n.t('view_more_bt_this_developer')} onPress={() => {
                 if (Platform.OS === 'ios') {
                   Linking.openURL('https://itunes.apple.com/us/developer/kf-pun/id1116896894');
                 } else if (Platform.OS === 'android') {
