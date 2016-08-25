@@ -8,6 +8,8 @@ import {
 } from 'react-native-router-flux';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 
+import I18n from './app/utils/i18n';
+
 import { config } from './app/config';
 GoogleAnalytics.setTrackerId(config.trackerId);
 
@@ -25,10 +27,10 @@ console.ignoredYellowBox = [
 
 const scenes = Actions.create(
   <Scene key="root">
-    <Scene key="main" title="Bitcoin Calculator" component={MainView} hideNavBar={true} initial={true} />
-    <Scene key="more" title="More" component={MoreView} hideNavBar={true} direction="vertical"/>
-    <Scene key="add" title="Add" component={AddView} hideNavBar={true} direction="vertical"/>
-    <Scene key="details" title="Details" component={DetailsView} hideNavBar={true} />
+    <Scene key="main" title={I18n.t('main')} component={MainView} hideNavBar={true} initial={true} />
+    <Scene key="add" title={I18n.t('add')} component={AddView} hideNavBar={true} direction="vertical"/>
+    <Scene key="details" title={I18n.t('details')} component={DetailsView} hideNavBar={true} />
+    <Scene key="more" title={I18n.t('more')} component={MoreView} hideNavBar={true} direction="vertical"/>
   </Scene>
 );
 
