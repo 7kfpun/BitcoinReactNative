@@ -46,13 +46,11 @@ export default class Main extends React.Component {
     } else if (Platform.OS === 'android') {
       return (
         <Icon.ToolbarAndroid
+          navIconName="arrow-back"
+          onIconClicked={Actions.pop}
           style={styles.toolbar}
           title={this.props.title}
           titleColor="white"
-          actions={[
-            {title: 'Done', iconName: 'check', iconSize: 26, show: 'always'},
-          ]}
-          onActionSelected={(position) => this.onActionSelected(position)}
         />
       );
     }
@@ -67,14 +65,14 @@ export default class Main extends React.Component {
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
             <Section header="INFO">
-              <Cell cellstyle="RightDetail" title="Disclaimer" onPress={() => Alert.alert(
+              <Cell cellStyle="RightDetail" title="Disclaimer" onPress={() => Alert.alert(
                 'Disclaimer',
                 'All data is gathered from Bitcoin Average, we do not guarantee its accuracy for any use.\n\nNothing presented here is an investment recommendation and any data or content should not be relied upon for any investment activities.\n\nIn no event will we be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this app.',
                 [
                   {text: 'OK', onPress: () => console.log('OK Pressed')},
                 ]
               )} />
-              <Cell cellstyle="RightDetail" title="Rate us!" onPress={() => {
+              <Cell cellStyle="RightDetail" title="Rate us!" onPress={() => {
                 if (Platform.OS === 'ios') {
                   Linking.openURL('itms-apps://itunes.apple.com/app/id1123557731');
                 } else if (Platform.OS === 'android') {
@@ -84,7 +82,7 @@ export default class Main extends React.Component {
             </Section>
 
             <Section header="OTHERS">
-              <Cell cellstyle="RightDetail" title="View More by This Developer" onPress={() => {
+              <Cell cellStyle="RightDetail" title="View More by This Developer" onPress={() => {
                 if (Platform.OS === 'ios') {
                   Linking.openURL('https://itunes.apple.com/us/developer/kf-pun/id1116896894');
                 } else if (Platform.OS === 'android') {
