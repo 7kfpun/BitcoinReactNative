@@ -11,6 +11,31 @@ import {
 import CurrencyActions from '../actions/currency-actions';
 import CurrencyStore from '../stores/currency-store';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    height: 50,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomColor: '#CCCCCC',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  selected: {
+    backgroundColor: '#202020',
+  },
+  firstBlock: {
+    flex: 1,
+    marginLeft: 25,
+  },
+  secondBlock: {
+    flex: 1,
+    alignItems: 'flex-end',
+    marginRight: 25,
+  },
+});
+
 export default class CurrencyManageCell extends React.Component {
   constructor(props) {
     super(props);
@@ -52,8 +77,9 @@ export default class CurrencyManageCell extends React.Component {
           </View>
           <View style={styles.secondBlock}>
             <Switch
-              onValueChange={this.toggleCurrency.bind(this, this.props.currency)}
-              value={this.state.currencies.indexOf(this.props.currency) !== -1} />
+              onValueChange={() => this.toggleCurrency(this.props.currency)}
+              value={this.state.currencies.indexOf(this.props.currency) !== -1}
+            />
           </View>
         </View>
       </TouchableHighlight>
@@ -61,27 +87,12 @@ export default class CurrencyManageCell extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    height: 50,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomColor: '#CCCCCC',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  selected: {
-    backgroundColor: '#202020',
-  },
-  firstBlock: {
-    flex: 1,
-    marginLeft: 25,
-  },
-  secondBlock: {
-    flex: 1,
-    alignItems: 'flex-end',
-    marginRight: 25,
-  },
-});
+CurrencyManageCell.propTypes = {
+  title: React.PropTypes.string,
+  currency: React.PropTypes.string,
+  toggleCurrency: React.PropTypes.string,
+};
+
+CurrencyManageCell.defaultProps = {
+  title: '',
+};

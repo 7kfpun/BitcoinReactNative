@@ -6,25 +6,51 @@ import {
   View,
 } from 'react-native';
 
-// Flux
-import CurrencyStore from '../stores/currency-store';
-
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
 
+// Flux
+import CurrencyStore from '../stores/currency-store';
+
 import CurrencyManageCell from '../components/currency-manage-cell';
 
 import I18n from '../utils/i18n';
 
-export default class Main extends React.Component {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#EEEEEE',
+  },
+  navigatorBarIOS: {
+    backgroundColor: '#455A64',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#37474F',
+  },
+  navigatorLeftButton: {
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingRight: 50,
+  },
+  navigatorRightButton: {
+    paddingTop: 10,
+    paddingLeft: 50,
+    paddingRight: 10,
+  },
+  toolbar: {
+    height: 56,
+    backgroundColor: '#202020',
+  },
+});
+
+export default class AddView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = Object.assign({
-      dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
+      dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 }),
       key: Math.random(),
     }, CurrencyStore.getState());
   }
@@ -62,9 +88,9 @@ export default class Main extends React.Component {
     if (Platform.OS === 'ios') {
       return (
         <NavigationBar
-          statusBar={{tintColor: '#455A64', style: 'light-content'}}
+          statusBar={{ tintColor: '#455A64', style: 'light-content' }}
           style={styles.navigatorBarIOS}
-          title={{title: this.props.title, tintColor: 'white'}}
+          title={{ title: this.props.title, tintColor: 'white' }}
           rightButton={{
             title: I18n.t('done'),
             tintColor: '#3CABDA',
@@ -79,7 +105,7 @@ export default class Main extends React.Component {
           title={this.props.title}
           titleColor="white"
           actions={[
-            {title: I18n.t('done'), iconName: 'check', iconSize: 26, show: 'always'},
+            { title: I18n.t('done'), iconName: 'check', iconSize: 26, show: 'always' },
           ]}
           onActionSelected={(position) => this.onActionSelected(position)}
         />
@@ -102,28 +128,10 @@ export default class Main extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#EEEEEE',
-  },
-  navigatorBarIOS: {
-    backgroundColor: '#455A64',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#37474F',
-  },
-  navigatorLeftButton: {
-    paddingTop: 10,
-    paddingLeft: 10,
-    paddingRight: 50,
-  },
-  navigatorRightButton: {
-    paddingTop: 10,
-    paddingLeft: 50,
-    paddingRight: 10,
-  },
-  toolbar: {
-    height: 56,
-    backgroundColor: '#202020',
-  },
-});
+AddView.propTypes = {
+  title: React.PropTypes.string,
+};
+
+AddView.defaultProps = {
+  title: '',
+};

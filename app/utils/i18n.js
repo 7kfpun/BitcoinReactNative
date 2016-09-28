@@ -19,7 +19,7 @@ I18n.translations = {
     '24h_average': '24h average:',
     ask: 'Ask:',
     bid: 'Bid:',
-    last: 'Last:'
+    last: 'Last:',
   },
   zh: {
     main: 'Bitcoin 計算器',
@@ -37,7 +37,7 @@ I18n.translations = {
     '24h_average': '日平均價：',
     ask: '買入價：',
     bid: '賣出價：',
-    last: '最後出價：'
+    last: '最後出價：',
   },
   'zh-CN': {
     main: 'Bitcoin 计算器',
@@ -55,7 +55,7 @@ I18n.translations = {
     '24h_average': '日平均价：',
     ask: '买入价：',
     bid: '卖出价：',
-    last: '最后出价：'
+    last: '最后出价：',
   },
 };
 

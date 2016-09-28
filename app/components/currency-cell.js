@@ -11,71 +11,6 @@ import { Actions } from 'react-native-router-flux';
 
 import currencies from '../utils/currencies';
 
-export default class CurrencyCell extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      text: '0',
-    };
-  }
-
-  render() {
-    return (
-      <TouchableHighlight
-        onPress={() => Actions.details({
-          title: currencies[this.props.currency],
-          btctoothers: this.props.btctoothers,
-          currency: this.props.currency,
-          unit: this.props.unit,
-        })} underlayColor="#202020">
-        <View>
-          {this.props.btctoothers && <View style={styles.container}>
-            <View style={styles.firstBlock}>
-              <Text style={styles.firstBlockText}>
-                {this.props.unit} BTC
-              </Text>
-            </View>
-            <View style={styles.secondBlock}>
-              {this.props.bitcoinData && this.props.bitcoinData[this.props.currency]
-                && <Text style={styles.priceText}>
-                    <Text style={this.props.bitcoinData[this.props.currency].last > this.props.bitcoinDataPrevious[this.props.currency].last
-                                ? styles.priceGreenText
-                                : this.props.bitcoinData[this.props.currency].last < this.props.bitcoinDataPrevious[this.props.currency].last
-                                ? styles.priceRedText : null}>
-                      {(this.props.unit * this.props.bitcoinData[this.props.currency].last).toFixed(2)}
-                    </Text>
-                    {' ' + this.props.currency}
-                  </Text>}
-              <Text style={styles.currencyName}>{currencies[this.props.currency]}</Text>
-            </View>
-          </View>}
-          {!this.props.btctoothers && <View style={styles.container}>
-            <View style={styles.firstBlock}>
-              <Text style={styles.firstBlockText}>
-                {this.props.unit + ' ' + this.props.currency}
-              </Text>
-              <Text style={[styles.currencyName, {textAlign: 'left'}]}>{currencies[this.props.currency]}</Text>
-            </View>
-            <View style={styles.secondBlock}>
-              {this.props.bitcoinData && this.props.bitcoinData[this.props.currency]
-                && <Text style={styles.priceText}>
-                    <Text style={this.props.bitcoinData[this.props.currency].last > this.props.bitcoinDataPrevious[this.props.currency].last
-                                ? styles.priceRedText
-                                : this.props.bitcoinData[this.props.currency].last < this.props.bitcoinDataPrevious[this.props.currency].last
-                                ? styles.priceGreenText : null}>
-                      {(this.props.unit / this.props.bitcoinData[this.props.currency].last).toFixed(4)}
-                    </Text>
-                    {' BTC'}
-                  </Text>}
-            </View>
-          </View>}
-        </View>
-      </TouchableHighlight>
-    );
-  }
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -120,3 +55,84 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
+export default class CurrencyCell extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      text: '0',
+    };
+  }
+
+  render() {
+    return (
+      <TouchableHighlight
+        onPress={() => Actions.details({
+          title: currencies[this.props.currency],
+          btctoothers: this.props.btctoothers,
+          currency: this.props.currency,
+          unit: this.props.unit,
+        })} underlayColor="#202020"
+      >
+        <View>
+          {this.props.btctoothers && <View style={styles.container}>
+            <View style={styles.firstBlock}>
+              <Text style={styles.firstBlockText}>
+                {this.props.unit} BTC
+              </Text>
+            </View>
+            <View style={styles.secondBlock}>
+              {this.props.bitcoinData && this.props.bitcoinData[this.props.currency]
+                && <Text style={styles.priceText}>
+                  <Text
+                    style={this.props.bitcoinData[this.props.currency].last > this.props.bitcoinDataPrevious[this.props.currency].last
+                              ? styles.priceGreenText
+                              : this.props.bitcoinData[this.props.currency].last < this.props.bitcoinDataPrevious[this.props.currency].last
+                              ? styles.priceRedText : null}>
+                    {(this.props.unit * this.props.bitcoinData[this.props.currency].last).toFixed(2)}
+                  </Text>
+                  {` ${this.props.currency}`}
+                </Text>}
+              <Text style={styles.currencyName}>{currencies[this.props.currency]}</Text>
+            </View>
+          </View>}
+          {!this.props.btctoothers && <View style={styles.container}>
+            <View style={styles.firstBlock}>
+              <Text style={styles.firstBlockText}>
+                {`${this.props.unit} ${this.props.currency}`}
+              </Text>
+              <Text style={[styles.currencyName, { textAlign: 'left' }]}>{currencies[this.props.currency]}</Text>
+            </View>
+            <View style={styles.secondBlock}>
+              {this.props.bitcoinData && this.props.bitcoinData[this.props.currency]
+                && <Text style={styles.priceText}>
+                  <Text
+                    style={this.props.bitcoinData[this.props.currency].last > this.props.bitcoinDataPrevious[this.props.currency].last
+                              ? styles.priceRedText
+                              : this.props.bitcoinData[this.props.currency].last < this.props.bitcoinDataPrevious[this.props.currency].last
+                              ? styles.priceGreenText : null}>
+                    {(this.props.unit / this.props.bitcoinData[this.props.currency].last).toFixed(4)}
+                  </Text>
+                    {' BTC'}
+                </Text>}
+            </View>
+          </View>}
+        </View>
+      </TouchableHighlight>
+    );
+  }
+}
+
+CurrencyCell.propTypes = {
+  title: React.PropTypes.string,
+  currency: React.PropTypes.string,
+  btctoothers: React.PropTypes.string,
+  unit: React.PropTypes.string,
+  bitcoinData: React.PropTypes.string,
+  bitcoinDataPrevious: React.PropTypes.string,
+};
+
+CurrencyCell.defaultProps = {
+  title: '',
+};

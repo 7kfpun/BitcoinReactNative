@@ -1,17 +1,17 @@
+// 3rd party libraries
+import store from 'react-native-simple-store';
+
 import alt from '../alt';
 
 // Flux
 import CurrencyActions from '../actions/currency-actions';
-
-// 3rd party libraries
-import store from 'react-native-simple-store';
 
 // Utils
 import bitcoin from '../utils/bitcoin';
 
 class BitcoinStore {
   constructor() {
-    let that = this;
+    const that = this;
     store.get('currencies').then((currencies) => {
       if (!currencies) {
         currencies = ['USD', 'EUR', 'CNY', 'GBP', 'CAD'];
@@ -21,7 +21,7 @@ class BitcoinStore {
         currencies.shift();
       }
       that.setState({
-        currencies: currencies,
+        currencies,
       });
       store.save('currencies', currencies);
     });
@@ -40,11 +40,11 @@ class BitcoinStore {
     });
 
     bitcoin().then((bitcoinData) => {
-      let timestamp = bitcoinData.timestamp;
+      const timestamp = bitcoinData.timestamp;
       delete bitcoinData.timestamp;
       that.setState({
-        timestamp: timestamp,
-        bitcoinData: bitcoinData,
+        timestamp,
+        bitcoinData,
         bitcoinDataPrevious: bitcoinData || {},
       });
       store.save('bitcoinData', bitcoinData);
@@ -67,18 +67,18 @@ class BitcoinStore {
 
   handleUpdatePrice() {
     console.log('handleUpdatePrice');
-    let that = this;
+    const that = this;
     store.get('bitcoinData').then((bitcoinDataPrevious) => {
       that.setState({
         bitcoinDataPrevious: bitcoinDataPrevious || {},
       });
 
       bitcoin().then((bitcoinData) => {
-        let timestamp = bitcoinData.timestamp;
+        const timestamp = bitcoinData.timestamp;
         delete bitcoinData.timestamp;
         that.setState({
-          timestamp: timestamp,
-          bitcoinData: bitcoinData,
+          timestamp,
+          bitcoinData,
         });
         store.save('bitcoinData', bitcoinData);
         store.save('timestamp', timestamp);
@@ -88,16 +88,16 @@ class BitcoinStore {
 
   handleAddCurrency(currency) {
     console.log('handleAddCurrency', currency);
-    let currencies = this.state.currencies;
+    const currencies = this.state.currencies;
     currencies.push(currency);
-    this.setState({currencies: currencies});
+    this.setState({ currencies });
     store.save('currencies', currencies);
   }
 
   handleRemoveCurrency(currency) {
     console.log('handleRemoveCurrency', currency);
-    let currencies = this.state.currencies.filter(item => item !== currency);
-    this.setState({currencies: currencies});
+    const currencies = this.state.currencies.filter(item => item !== currency);
+    this.setState({ currencies });
     store.save('currencies', currencies);
   }
 }
