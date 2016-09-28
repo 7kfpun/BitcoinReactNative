@@ -129,8 +129,8 @@ CurrencyCell.propTypes = {
   currency: React.PropTypes.string,
   btctoothers: React.PropTypes.bool,
   unit: React.PropTypes.number,
-  bitcoinData: React.PropTypes.object,
-  bitcoinDataPrevious: React.PropTypes.object,
+  bitcoinData: React.PropTypes.objectOf(React.PropTypes.object),
+  bitcoinDataPrevious: React.PropTypes.objectOf(React.PropTypes.object),
 };
 
 CurrencyCell.defaultProps = {

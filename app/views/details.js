@@ -119,12 +119,6 @@ export default class DetailsView extends React.Component {
     });
   }
 
-  popWithAd() {
-    AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
-    AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log(error)));
-    Actions.pop();
-  }
-
   renderToolbar() {
     if (Platform.OS === 'ios') {
       return (
@@ -137,7 +131,7 @@ export default class DetailsView extends React.Component {
             name="arrow-back"
             size={26}
             color="white"
-            onPress={() => this.popWithAd()}
+            onPress={Actions.pop}
           />}
         />
       );
@@ -145,7 +139,7 @@ export default class DetailsView extends React.Component {
       return (
         <Icon.ToolbarAndroid
           navIconName="arrow-back"
-          onIconClicked={() => this.popWithAd()}
+          onIconClicked={Actions.pop}
           style={styles.toolbar}
           title={this.props.title}
           titleColor="white"
@@ -239,8 +233,8 @@ DetailsView.propTypes = {
   currency: React.PropTypes.string,
   btctoothers: React.PropTypes.bool,
   unit: React.PropTypes.number,
-  bitcoinData: React.PropTypes.object,
-  bitcoinDataPrevious: React.PropTypes.object,
+  bitcoinData: React.PropTypes.objectOf(React.PropTypes.object),
+  bitcoinDataPrevious: React.PropTypes.objectOf(React.PropTypes.object),
 };
 
 DetailsView.defaultProps = {
