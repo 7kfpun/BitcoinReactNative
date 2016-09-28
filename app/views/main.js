@@ -11,7 +11,7 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
-import { AdMobBanner, AdMobInterstitial } from 'react-native-admob';
+import { AdMobInterstitial } from 'react-native-admob';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
@@ -24,6 +24,8 @@ import moment from 'moment';
 import CurrencyActions from '../actions/currency-actions';
 import CurrencyStore from '../stores/currency-store';
 
+// Components
+import AdmobCell from '../components/admob-cell';
 import CurrencyCell from '../components/currency-cell';
 
 import { config } from '../config';
@@ -96,7 +98,7 @@ export default class MainView extends React.Component {
 
   componentDidMount() {
     timer.clearTimeout(this);
-    AdMobInterstitial.setAdUnitID(config.adUnitID.iosInterstital);
+    AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
     timer.setTimeout(this, 'AdMobInterstitial', () => {
       AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log(error)));
     }, 1000 * 10);
@@ -236,8 +238,7 @@ export default class MainView extends React.Component {
           </View>
         </View>
 
-        {Platform.OS === 'android' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.android} />}
-        {Platform.OS === 'ios' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.ios} />}
+        <AdmobCell />
       </View>
     );
   }

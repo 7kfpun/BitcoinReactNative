@@ -8,18 +8,22 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
-import { AdMobBanner } from 'react-native-admob';
+import { AdMobInterstitial } from 'react-native-admob';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
 
+// Components
+import AdmobCell from '../components/admob-cell';
+
 // Flux
 import CurrencyStore from '../stores/currency-store';
 
-import { config } from '../config';
 import currencies from '../utils/currencies';
 
 import I18n from '../utils/i18n';
+
+import { config } from '../config';
 
 const styles = StyleSheet.create({
   container: {
@@ -86,6 +90,7 @@ const styles = StyleSheet.create({
   },
   detailsText: {
     fontSize: 18,
+    lineHeight: 35,
     color: '#757575',
     textAlign: 'center',
   },
@@ -114,6 +119,12 @@ export default class DetailsView extends React.Component {
     });
   }
 
+  popWithAd() {
+    AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
+    AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log(error)));
+    Actions.pop();
+  }
+
   renderToolbar() {
     if (Platform.OS === 'ios') {
       return (
@@ -126,7 +137,7 @@ export default class DetailsView extends React.Component {
             name="arrow-back"
             size={26}
             color="white"
-            onPress={Actions.pop}
+            onPress={() => this.popWithAd()}
           />}
         />
       );
@@ -134,7 +145,7 @@ export default class DetailsView extends React.Component {
       return (
         <Icon.ToolbarAndroid
           navIconName="arrow-back"
-          onIconClicked={Actions.pop}
+          onIconClicked={() => this.popWithAd()}
           style={styles.toolbar}
           title={this.props.title}
           titleColor="white"
@@ -185,8 +196,7 @@ export default class DetailsView extends React.Component {
             {this.renderDetails()}
           </View>
 
-          {Platform.OS === 'android' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.android} />}
-          {Platform.OS === 'ios' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.ios} />}
+          <AdmobCell />
         </View>
       );
     }
@@ -218,8 +228,7 @@ export default class DetailsView extends React.Component {
           {this.renderDetails()}
         </View>
 
-        {Platform.OS === 'android' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.android} />}
-        {Platform.OS === 'ios' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.ios} />}
+        <AdmobCell />
       </View>
     );
   }
@@ -228,10 +237,10 @@ export default class DetailsView extends React.Component {
 DetailsView.propTypes = {
   title: React.PropTypes.string,
   currency: React.PropTypes.string,
-  btctoothers: React.PropTypes.string,
-  unit: React.PropTypes.string,
-  bitcoinData: React.PropTypes.string,
-  bitcoinDataPrevious: React.PropTypes.string,
+  btctoothers: React.PropTypes.bool,
+  unit: React.PropTypes.number,
+  bitcoinData: React.PropTypes.object,
+  bitcoinDataPrevious: React.PropTypes.object,
 };
 
 DetailsView.defaultProps = {

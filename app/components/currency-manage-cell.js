@@ -77,7 +77,7 @@ export default class CurrencyManageCell extends React.Component {
           </View>
           <View style={styles.secondBlock}>
             <Switch
-              onValueChange={() => this.toggleCurrency(this.props.currency)}
+              onValueChange={(value) => this.toggleCurrency(this.props.currency, value)}
               value={this.state.currencies.indexOf(this.props.currency) !== -1}
             />
           </View>

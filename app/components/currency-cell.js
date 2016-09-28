@@ -127,10 +127,10 @@ export default class CurrencyCell extends React.Component {
 CurrencyCell.propTypes = {
   title: React.PropTypes.string,
   currency: React.PropTypes.string,
-  btctoothers: React.PropTypes.string,
-  unit: React.PropTypes.string,
-  bitcoinData: React.PropTypes.string,
-  bitcoinDataPrevious: React.PropTypes.string,
+  btctoothers: React.PropTypes.bool,
+  unit: React.PropTypes.number,
+  bitcoinData: React.PropTypes.object,
+  bitcoinDataPrevious: React.PropTypes.object,
 };
 
 CurrencyCell.defaultProps = {

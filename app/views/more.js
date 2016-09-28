@@ -10,18 +10,15 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
-import { AdMobBanner } from 'react-native-admob';
-import {
-  Cell,
-  Section,
-  TableView,
-} from 'react-native-tableview-simple';
+import { Cell, Section, TableView } from 'react-native-tableview-simple';
+import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
 import ReactNativeI18n from 'react-native-i18n';
 
-import { config } from '../config';
+// Components
+import AdmobCell from '../components/admob-cell';
 
 import I18n from '../utils/i18n';
 
@@ -96,6 +93,7 @@ export default class MoreView extends React.Component {
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
             <Section header={I18n.t('info')}>
+              <Cell cellStyle="RightDetail" title={I18n.t('version')} detail={DeviceInfo.getReadableVersion()} />
               <Cell cellStyle="RightDetail" title={I18n.t('language')} detail={deviceLocale} />
               <Cell
                 cellStyle="Basic"
@@ -133,12 +131,18 @@ export default class MoreView extends React.Component {
                   }
                 }}
               />
+              <Cell
+                cellStyle="Basic"
+                title={I18n.t('source_code')}
+                onPress={() => {
+                  Linking.openURL('https://github.com/7kfpun/BitcoinReactNative');
+                }}
+              />
             </Section>
           </TableView>
         </ScrollView>
 
-        {Platform.OS === 'android' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.android} />}
-        {Platform.OS === 'ios' && <AdMobBanner bannerSize={"smartBannerPortrait"} adUnitID={config.adUnitID.ios} />}
+        <AdmobCell bannerSize="mediumRectangle" />
       </View>
     );
   }
