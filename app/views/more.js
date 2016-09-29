@@ -140,9 +140,9 @@ export default class MoreView extends React.Component {
               />
             </Section>
           </TableView>
-        </ScrollView>
 
-        <AdmobCell bannerSize="mediumRectangle" />
+          <AdmobCell bannerSize="mediumRectangle" />
+        </ScrollView>
       </View>
     );
   }

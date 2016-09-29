@@ -87,8 +87,10 @@ export default class MainView extends React.Component {
   constructor(props) {
     super(props);
 
+    this.dataSource = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
+
     this.state = Object.assign({
-      dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 }),
+      dataSource: this.dataSource.cloneWithRows([]),
       value: 1,
       btctoothers: true,
       refreshing: false,
@@ -117,7 +119,7 @@ export default class MainView extends React.Component {
 
   onCurrencyStoreChange(state) {
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(state.currencies),
+      dataSource: this.dataSource.cloneWithRows(state.currencies),
       bitcoinData: state.bitcoinData,
       bitcoinDataPrevious: state.bitcoinDataPrevious,
       timestamp: state.timestamp,
@@ -184,7 +186,6 @@ export default class MainView extends React.Component {
       <View style={styles.container}>
         {this.renderToolbar()}
         <ListView
-          key={this.state.key}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
