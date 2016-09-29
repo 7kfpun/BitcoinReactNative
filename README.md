@@ -22,8 +22,8 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 
 ## React and React Native version
 
-* [react](https://github.com/facebook/react): 15.0.2
-* [react-native](https://github.com/facebook/react-native): 0.26.3
+* [react](https://github.com/facebook/react): 15.3.1
+* [react-native](https://github.com/facebook/react-native): 0.34.1
 
 ## Plugins used
 
