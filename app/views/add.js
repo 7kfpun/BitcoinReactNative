@@ -22,7 +22,7 @@ import I18n from '../utils/i18n';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#EFEFF4',
   },
   navigatorBarIOS: {
     backgroundColor: '#455A64',
@@ -56,13 +56,13 @@ export default class AddView extends React.Component {
   }
 
   componentDidMount() {
-    CurrencyStore.listen((state) => this.onCurrencyStoreChange(state));
+    CurrencyStore.listen(state => this.onCurrencyStoreChange(state));
 
     this.prepareRows();
   }
 
   componentWillUnmount() {
-    CurrencyStore.unlisten((state) => this.onCurrencyStoreChange(state));
+    CurrencyStore.unlisten(state => this.onCurrencyStoreChange(state));
   }
 
   onCurrencyStoreChange(state) {
@@ -107,7 +107,7 @@ export default class AddView extends React.Component {
           actions={[
             { title: I18n.t('done'), iconName: 'check', iconSize: 26, show: 'always' },
           ]}
-          onActionSelected={(position) => this.onActionSelected(position)}
+          onActionSelected={position => this.onActionSelected(position)}
         />
       );
     }
@@ -121,7 +121,7 @@ export default class AddView extends React.Component {
         <ListView
           key={this.state.key}
           dataSource={this.state.dataSource}
-          renderRow={(currency) => <CurrencyManageCell currency={currency} />}
+          renderRow={currency => <CurrencyManageCell currency={currency} />}
         />
       </View>
     );

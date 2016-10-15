@@ -27,7 +27,7 @@ const deviceLocale = ReactNativeI18n.locale;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#EFEFF4',
   },
   navigatorBarIOS: {
     backgroundColor: '#455A64',
@@ -108,6 +108,13 @@ export default class MoreView extends React.Component {
               />
               <Cell
                 cellStyle="Basic"
+                title={I18n.t('feedback')}
+                onPress={() => {
+                  Linking.openURL('https://goo.gl/forms/Vng3RgmkSpSMnel52');
+                }}
+              />
+              <Cell
+                cellStyle="Basic"
                 title={I18n.t('rate_us')}
                 onPress={() => {
                   if (Platform.OS === 'ios') {
@@ -131,17 +138,11 @@ export default class MoreView extends React.Component {
                   }
                 }}
               />
-              <Cell
-                cellStyle="Basic"
-                title={I18n.t('source_code')}
-                onPress={() => {
-                  Linking.openURL('https://github.com/7kfpun/BitcoinReactNative');
-                }}
-              />
             </Section>
           </TableView>
 
           <AdmobCell bannerSize="mediumRectangle" />
+          <View style={{ height: 100 }} />
         </ScrollView>
       </View>
     );

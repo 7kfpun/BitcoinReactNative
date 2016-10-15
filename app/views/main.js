@@ -33,7 +33,7 @@ import { config } from '../config';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#EFEFF4',
   },
   navigatorBarIOS: {
     backgroundColor: '#455A64',
@@ -102,17 +102,17 @@ export default class MainView extends React.Component {
     timer.clearTimeout(this);
     AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
     timer.setTimeout(this, 'AdMobInterstitial', () => {
-      AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log(error)));
+      AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
     }, 1000 * 10);
 
-    CurrencyStore.listen((state) => this.onCurrencyStoreChange(state));
+    CurrencyStore.listen(state => this.onCurrencyStoreChange(state));
 
     this.prepareRows();
     timer.setInterval(this, 'prepareRows', () => CurrencyActions.updatePrice(), 10000);
   }
 
   componentWillUnmount() {
-    CurrencyStore.unlisten((state) => this.onCurrencyStoreChange(state));
+    CurrencyStore.unlisten(state => this.onCurrencyStoreChange(state));
 
     timer.clearInterval(this);
   }
@@ -174,7 +174,7 @@ export default class MainView extends React.Component {
             { title: 'Add', iconName: 'add', iconSize: 26, show: 'always' },
             { title: 'Settings', iconName: 'info-outline', iconSize: 26, show: 'always' },
           ]}
-          onActionSelected={(position) => this.onActionSelected(position)}
+          onActionSelected={position => this.onActionSelected(position)}
         />
       );
     }
@@ -193,7 +193,7 @@ export default class MainView extends React.Component {
             />
           }
           dataSource={this.state.dataSource}
-          renderRow={(currency) => <CurrencyCell
+          renderRow={currency => <CurrencyCell
             btctoothers={this.state.btctoothers}
             currency={currency}
             bitcoinData={this.state.bitcoinData}

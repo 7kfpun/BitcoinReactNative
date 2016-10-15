@@ -8,7 +8,6 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
-import { AdMobInterstitial } from 'react-native-admob';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
@@ -23,12 +22,10 @@ import currencies from '../utils/currencies';
 
 import I18n from '../utils/i18n';
 
-import { config } from '../config';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#EFEFF4',
   },
   navigatorBarIOS: {
     backgroundColor: '#455A64',
@@ -104,11 +101,11 @@ export default class DetailsView extends React.Component {
   }
 
   componentDidMount() {
-    CurrencyStore.listen((state) => this.onCurrencyStoreChange(state));
+    CurrencyStore.listen(state => this.onCurrencyStoreChange(state));
   }
 
   componentWillUnmount() {
-    CurrencyStore.unlisten((state) => this.onCurrencyStoreChange(state));
+    CurrencyStore.unlisten(state => this.onCurrencyStoreChange(state));
   }
 
   onCurrencyStoreChange(state) {
@@ -183,7 +180,7 @@ export default class DetailsView extends React.Component {
                   >
                     {(this.props.unit * this.state.bitcoinData[this.props.currency].last).toFixed(2)}
                   </Text>
-                  {`${this.props.currency}`}
+                  {` ${this.props.currency}`}
                 </Text>}
               <Text style={styles.currencyName}>{currencies[this.props.currency]}</Text>
             </View>
@@ -233,8 +230,6 @@ DetailsView.propTypes = {
   currency: React.PropTypes.string,
   btctoothers: React.PropTypes.bool,
   unit: React.PropTypes.number,
-  bitcoinData: React.PropTypes.objectOf(React.PropTypes.object),
-  bitcoinDataPrevious: React.PropTypes.objectOf(React.PropTypes.object),
 };
 
 DetailsView.defaultProps = {
