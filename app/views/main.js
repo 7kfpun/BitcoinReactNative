@@ -235,7 +235,7 @@ export default class MainView extends React.Component {
             onValueChange={(value) => { this.setState({ value }); this.setState({ key: Math.random() }); }}
           />
           <View style={styles.timestampBlock}>
-            <Text key={this.state.key}>{moment(new Date(this.state.timestamp)).format('LLLL')}</Text>
+            <Text key={this.state.key}>{this.state.timestamp && moment(new Date(this.state.timestamp)).format('LLLL')}</Text>
           </View>
         </View>
 

@@ -1,6 +1,8 @@
 // 3rd party libraries
 import store from 'react-native-simple-store';
 
+import moment from 'moment';
+
 import alt from '../alt';
 
 // Flux
@@ -40,8 +42,10 @@ class BitcoinStore {
     });
 
     bitcoin().then((bitcoinData) => {
-      const timestamp = bitcoinData.timestamp;
-      delete bitcoinData.timestamp;
+      // const timestamp = bitcoinData.timestamp;
+      const timestamp = moment.now();
+      // delete bitcoinData.timestamp;
+      delete bitcoinData.message;
       that.setState({
         timestamp,
         bitcoinData,
@@ -74,8 +78,10 @@ class BitcoinStore {
       });
 
       bitcoin().then((bitcoinData) => {
-        const timestamp = bitcoinData.timestamp;
-        delete bitcoinData.timestamp;
+        // const timestamp = bitcoinData.timestamp;
+        const timestamp = moment.now();
+        // delete bitcoinData.timestamp;
+        delete bitcoinData.message;
         that.setState({
           timestamp,
           bitcoinData,

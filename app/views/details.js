@@ -146,15 +146,20 @@ export default class DetailsView extends React.Component {
   }
 
   renderDetails() {
-    return (
-      <View style={{ flex: 1 }}>
-        {this.state.bitcoinData[this.props.currency]['24h_avg']
-        && <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('24h_average')}</Text> {this.state.bitcoinData[this.props.currency]['24h_avg']} / BTC</Text>}
-        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('ask')}</Text> {this.state.bitcoinData[this.props.currency].ask} / BTC</Text>
-        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('bid')}</Text> {this.state.bitcoinData[this.props.currency].bid} / BTC</Text>
-        <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('last')}:</Text> {this.state.bitcoinData[this.props.currency].last} / BTC</Text>
-      </View>
-    );
+    if (this.state.bitcoinData[this.props.currency]) {
+      return (
+        <View style={{ flex: 1 }}>
+          {this.state.bitcoinData[this.props.currency]['24h_avg']
+          && <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('24h_average')}</Text> {this.state.bitcoinData[this.props.currency]['24h_avg']} / BTC</Text>}
+          {this.state.bitcoinData[this.props.currency].ask
+          && <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('ask')}</Text> {this.state.bitcoinData[this.props.currency].ask} / BTC</Text>}
+          {this.state.bitcoinData[this.props.currency].bid
+          && <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('bid')}</Text> {this.state.bitcoinData[this.props.currency].bid} / BTC</Text>}
+          {this.state.bitcoinData[this.props.currency].last
+          && <Text style={styles.detailsText}><Text style={styles.detailsBlackText}>{I18n.t('last')}:</Text> {this.state.bitcoinData[this.props.currency].last} / BTC</Text>}
+        </View>
+      );
+    }
   }
 
   render() {
@@ -170,7 +175,7 @@ export default class DetailsView extends React.Component {
               </Text>
             </View>
             <View style={styles.secondBlock}>
-              {this.state.bitcoinData && this.state.bitcoinData[this.props.currency]
+              {this.state.bitcoinData && this.state.bitcoinData[this.props.currency] && this.state.bitcoinData[this.props.currency].last
                 && <Text style={styles.priceText}>
                   <Text
                     style={this.state.bitcoinData[this.props.currency].last > this.state.bitcoinDataPrevious[this.props.currency].last
@@ -203,7 +208,7 @@ export default class DetailsView extends React.Component {
             <Text style={[styles.currencyName, { textAlign: 'left' }]}>{currencies[this.props.currency]}</Text>
           </View>
           <View style={styles.secondBlock}>
-            {this.state.bitcoinData && this.state.bitcoinData[this.props.currency]
+            {this.state.bitcoinData && this.state.bitcoinData[this.props.currency] && this.state.bitcoinData[this.props.currency].last
               && <Text style={styles.priceText}>
                 <Text
                   style={this.state.bitcoinData[this.props.currency].last > this.state.bitcoinDataPrevious[this.props.currency].last

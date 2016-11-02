@@ -32,9 +32,9 @@ console.ignoredYellowBox = [
 const scenes = Actions.create(
   <Scene key="root">
     <Scene key="main" title={I18n.t('main')} component={MainView} hideNavBar={true} initial={true} />
-    <Scene key="add" title={I18n.t('add')} component={AddView} hideNavBar={true} direction="vertical" />
+    <Scene key="add" title={I18n.t('add')} component={AddView} hideNavBar={true} direction="vertical" panHandlers={null} />
     <Scene key="details" title={I18n.t('details')} component={DetailsView} hideNavBar={true} />
-    <Scene key="more" title={I18n.t('more')} component={MoreView} hideNavBar={true} direction="vertical" />
+    <Scene key="more" title={I18n.t('more')} component={MoreView} hideNavBar={true} direction="vertical" panHandlers={null} />
   </Scene>
 );
 
