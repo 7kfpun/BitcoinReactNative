@@ -37,6 +37,7 @@
     "react-native-device-info": "^0.9.5",
     "react-native-google-analytics-bridge": "^3.1.0",
     "react-native-i18n": "^0.1.1",
+    "react-native-keep-awake": "^1.0.7",
     "react-native-navbar": "^1.5.4",
     "react-native-router-flux": "^3.35.0",
     "react-native-simple-store": "^1.1.0",

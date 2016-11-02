@@ -33,6 +33,7 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 * [react-native-device-info](https://github.com/rebeccahughes/react-native-device-info) - Device Information for React Native iOS and Android.
 * [react-native-google-analytics-bridge](https://github.com/idehub/react-native-google-analytics-bridge) - React Native bridge to the Google Analytics libraries on both iOS and Android.
 * [react-native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n) - React Native + i18n.js.
+* [react-native-keep-awake](https://github.com/corbt/react-native-keep-awake) - Keep the screen from going to sleep. iOS and Android.
 * [react-native-navbar](https://github.com/Kureev/react-native-navbar) - Navbar component for React Native.
 * [react-native-router-flux](https://github.com/aksonov/react-native-router-flux) - React Native Router based on new React Native Navigation API.
 * [react-native-simple-store](https://github.com/jasonmerino/react-native-simple-store) - A minimalistic wrapper around React Native's AsyncStorage.

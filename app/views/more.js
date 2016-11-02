@@ -5,17 +5,21 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
+  Switch,
+  Text,
   View,
 } from 'react-native';
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
-import { Cell, Section, TableView } from 'react-native-tableview-simple';
+import { Cell, CustomCell, Section, TableView } from 'react-native-tableview-simple';
 import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import KeepAwake from 'react-native-keep-awake';
 import NavigationBar from 'react-native-navbar';
 import ReactNativeI18n from 'react-native-i18n';
+import store from 'react-native-simple-store';
 
 // Components
 import AdmobCell from '../components/admob-cell';
@@ -51,6 +55,26 @@ const styles = StyleSheet.create({
 });
 
 export default class MoreView extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      keepAwake: false,
+    };
+  }
+
+  componentDidMount() {
+    const that = this;
+    store.get('keepAwake').then((keepAwake) => {
+      that.setState({ keepAwake });
+      if (keepAwake) {
+        KeepAwake.activate();
+      } else {
+        KeepAwake.deactivate();
+      }
+    });
+  }
+
   onActionSelected(position) {
     if (position === 0) {  // index of 'Done'
       Actions.pop();
@@ -92,6 +116,24 @@ export default class MoreView extends React.Component {
 
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
+            <Section header={I18n.t('setting')}>
+              <CustomCell>
+                <Text style={{ flex: 1, fontSize: 16 }}>{I18n.t('keep_awake')}</Text>
+                <Switch
+                  onValueChange={(keepAwake) => {
+                    this.setState({ keepAwake });
+                    store.save('keepAwake', keepAwake);
+                    if (keepAwake) {
+                      KeepAwake.activate();
+                    } else {
+                      KeepAwake.deactivate();
+                    }
+                  }}
+                  value={this.state.keepAwake}
+                />
+              </CustomCell>
+            </Section>
+
             <Section header={I18n.t('info')}>
               <Cell cellStyle="RightDetail" title={I18n.t('version')} detail={DeviceInfo.getReadableVersion()} />
               <Cell cellStyle="RightDetail" title={I18n.t('language')} detail={deviceLocale} />
