@@ -28,12 +28,11 @@ import CurrencyStore from '../stores/currency-store';
 import AdmobCell from '../components/admob-cell';
 import CurrencyCell from '../components/currency-cell';
 
-import { config } from '../config';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EFEFF4',
+    marginBottom: 50,
   },
   navigatorBarIOS: {
     backgroundColor: '#455A64',
@@ -61,6 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footer: {
+    flex: 1,
     backgroundColor: '#F5F5F5',
     paddingHorizontal: 20,
     paddingBottom: 10,
@@ -74,9 +74,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   thumb: {
-    width: 35,
-    height: 35,
-    borderRadius: 35 / 2,
+    width: 25,
+    height: 25,
+    borderRadius: 25 / 2,
     backgroundColor: 'white',
     borderColor: '#30A935',
     borderWidth: 2,
@@ -100,7 +100,6 @@ export default class MainView extends React.Component {
 
   componentDidMount() {
     timer.clearTimeout(this);
-    AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
     timer.setTimeout(this, 'AdMobInterstitial', () => {
       AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
     }, 1000 * 10);
@@ -186,6 +185,7 @@ export default class MainView extends React.Component {
       <View style={styles.container}>
         {this.renderToolbar()}
         <ListView
+          style={{ flex: 4 }}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}

@@ -4,6 +4,8 @@ I18n.fallbacks = true;
 
 I18n.translations = {
   en: {
+    price: 'Price',
+    news: 'News',
     main: 'Bitcoin Calculator',
     add: 'Add',
     details: 'Details',
@@ -26,6 +28,8 @@ I18n.translations = {
     last: 'Last:',
   },
   zh: {
+    price: '報價',
+    news: '最新消息',
     main: 'Bitcoin 計算器',
     add: '添加',
     details: '詳細資料',
@@ -48,6 +52,8 @@ I18n.translations = {
     last: '最後出價：',
   },
   'zh-CN': {
+    price: '报价',
+    news: '最新消息',
     main: 'Bitcoin 计算器',
     add: '添加',
     details: '详细资料',
