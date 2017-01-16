@@ -102,12 +102,13 @@ export default class MainView extends React.Component {
     timer.clearTimeout(this);
     timer.setTimeout(this, 'AdMobInterstitial', () => {
       AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
-    }, 1000 * 10);
+    }, 1000 * 30);
 
     CurrencyStore.listen(state => this.onCurrencyStoreChange(state));
 
     this.prepareRows();
-    timer.setInterval(this, 'prepareRows', () => CurrencyActions.updatePrice(), 10000);
+    timer.setInterval(this, 'prepareRows', () => CurrencyActions.updatePrice(), 5000);
+    timer.setInterval(this, 'adRefresh', () => this.setState({ adRefresh: Math.random() }), 20000);
   }
 
   componentWillUnmount() {
@@ -147,20 +148,12 @@ export default class MainView extends React.Component {
           statusBar={{ tintColor: '#455A64', style: 'light-content' }}
           style={styles.navigatorBarIOS}
           title={{ title: this.props.title, tintColor: 'white' }}
-          leftButton={<Icon
-            style={styles.navigatorLeftButton}
-            name="info-outline"
-            size={26}
-            color="white"
-            onPress={Actions.more}
-          />}
-          rightButton={<Icon
-            style={styles.navigatorRightButton}
-            name="add"
-            size={26}
-            color="white"
-            onPress={Actions.add}
-          />}
+          leftButton={<TouchableOpacity onPress={Actions.more}>
+            <Icon style={styles.navigatorLeftButton} name="info-outline" size={26} color="white" />
+          </TouchableOpacity>}
+          rightButton={<TouchableOpacity onPress={Actions.add}>
+            <Icon style={styles.navigatorRightButton} name="add" size={26} color="white" />
+          </TouchableOpacity>}
         />
       );
     } else if (Platform.OS === 'android') {
@@ -200,6 +193,7 @@ export default class MainView extends React.Component {
             bitcoinDataPrevious={this.state.bitcoinDataPrevious}
             unit={this.state.value}
           />}
+          renderFooter={() => <View style={{ marginVertical: 100 }}><AdmobCell bannerSize="mediumRectangle" /></View>}
         />
 
         <View style={styles.footer}>
@@ -225,9 +219,9 @@ export default class MainView extends React.Component {
             </View>
           </TouchableOpacity>
           <Slider
-            minimumValue={1}
+            minimumValue={0}
             maximumValue={this.state.btctoothers ? 100 : 10000}
-            step={1}
+            step={this.state.btctoothers ? 1 : 10}
             minimumTrackTintColor="#1FB28A"
             maximumTrackTintColor="#D3D3D3"
             thumbStyle={styles.thumb}
@@ -239,7 +233,7 @@ export default class MainView extends React.Component {
           </View>
         </View>
 
-        <AdmobCell />
+        <AdmobCell key={this.state.adRefresh} />
       </View>
     );
   }
