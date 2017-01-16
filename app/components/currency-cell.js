@@ -83,7 +83,7 @@ export default class CurrencyCell extends React.Component {
               </Text>
             </View>
             <View style={styles.secondBlock}>
-              {this.props.bitcoinData && this.props.bitcoinData[this.props.currency]
+              {this.props.bitcoinData && this.props.bitcoinData[this.props.currency] && this.props.bitcoinDataPrevious && this.props.bitcoinDataPrevious[this.props.currency]
                 && <Text style={styles.priceText}>
                   <Text
                     style={this.props.bitcoinData[this.props.currency].last > this.props.bitcoinDataPrevious[this.props.currency].last
@@ -105,7 +105,7 @@ export default class CurrencyCell extends React.Component {
               <Text style={[styles.currencyName, { textAlign: 'left' }]}>{currencies[this.props.currency]}</Text>
             </View>
             <View style={styles.secondBlock}>
-              {this.props.bitcoinData && this.props.bitcoinData[this.props.currency]
+              {this.props.bitcoinData && this.props.bitcoinData[this.props.currency] && this.props.bitcoinDataPrevious && this.props.bitcoinDataPrevious[this.props.currency]
                 && <Text style={styles.priceText}>
                   <Text
                     style={this.props.bitcoinData[this.props.currency].last > this.props.bitcoinDataPrevious[this.props.currency].last
