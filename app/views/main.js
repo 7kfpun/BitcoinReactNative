@@ -108,7 +108,6 @@ export default class MainView extends React.Component {
 
     this.prepareRows();
     timer.setInterval(this, 'prepareRows', () => CurrencyActions.updatePrice(), 5000);
-    timer.setInterval(this, 'adRefresh', () => this.setState({ adRefresh: Math.random() }), 20000);
   }
 
   componentWillUnmount() {
@@ -233,7 +232,7 @@ export default class MainView extends React.Component {
           </View>
         </View>
 
-        <AdmobCell key={this.state.adRefresh} />
+        <AdmobCell />
       </View>
     );
   }
