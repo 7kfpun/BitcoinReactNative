@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   currencyName: {
     fontSize: 12,
-    color: 'grey',
+    color: 'gray',
     textAlign: 'right',
   },
 });

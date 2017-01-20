@@ -1,4 +1,4 @@
-package com.bitcoin;
+package com.kfpun.bitcoin;
 
 import com.facebook.react.ReactActivity;
 

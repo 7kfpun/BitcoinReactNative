@@ -1,8 +1,4 @@
 <resources>
-
-
-
-
-
     <string name="app_name">Bitcoin</string>
+    <string name="facebook_app_id">251076388657254</string>
 </resources>
