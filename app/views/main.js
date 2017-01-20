@@ -12,6 +12,7 @@ import {
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
 import { AdMobInterstitial } from 'react-native-admob';
+import { NativeAdsManager } from 'react-native-fbads';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
@@ -26,7 +27,12 @@ import CurrencyStore from '../stores/currency-store';
 
 // Components
 import AdmobCell from '../components/admob-cell';
+import FbAdsCell from '../components/fbads-cell';
 import CurrencyCell from '../components/currency-cell';
+
+import { config } from '../config';
+
+const adsManager = new NativeAdsManager(config.fbads[Platform.OS].native);
 
 const styles = StyleSheet.create({
   container: {
@@ -53,21 +59,20 @@ const styles = StyleSheet.create({
     height: 56,
     backgroundColor: '#202020',
   },
-  convert: {
-    margin: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   footer: {
-    flex: 1,
+    height: 84,
     backgroundColor: '#F5F5F5',
     paddingHorizontal: 20,
-    paddingBottom: 10,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: '#EEEEEE',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#EEEEEE',
+  },
+  convert: {
+    marginTop: 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   timestampBlock: {
     justifyContent: 'center',
@@ -100,9 +105,11 @@ export default class MainView extends React.Component {
 
   componentDidMount() {
     timer.clearTimeout(this);
-    timer.setTimeout(this, 'AdMobInterstitial', () => {
-      AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
-    }, 1000 * 30);
+    if (Math.random() > 0.6) {
+      timer.setTimeout(this, 'AdMobInterstitial', () => {
+        AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
+      }, 1000 * 1);
+    }
 
     CurrencyStore.listen(state => this.onCurrencyStoreChange(state));
 
@@ -177,7 +184,6 @@ export default class MainView extends React.Component {
       <View style={styles.container}>
         {this.renderToolbar()}
         <ListView
-          style={{ flex: 4 }}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -185,14 +191,16 @@ export default class MainView extends React.Component {
             />
           }
           dataSource={this.state.dataSource}
-          renderRow={currency => <CurrencyCell
-            btctoothers={this.state.btctoothers}
-            currency={currency}
-            bitcoinData={this.state.bitcoinData}
-            bitcoinDataPrevious={this.state.bitcoinDataPrevious}
-            unit={this.state.value}
-          />}
-          renderFooter={() => <View style={{ marginVertical: 100 }}><AdmobCell bannerSize="mediumRectangle" /></View>}
+          renderRow={(currency, secId, rowId) => <View>
+            <CurrencyCell
+              btctoothers={this.state.btctoothers}
+              currency={currency}
+              bitcoinData={this.state.bitcoinData}
+              bitcoinDataPrevious={this.state.bitcoinDataPrevious}
+              unit={this.state.value}
+            />
+            {rowId % 10 === 0 && <FbAdsCell adsManager={adsManager} />}
+          </View>}
         />
 
         <View style={styles.footer}>
@@ -231,7 +239,6 @@ export default class MainView extends React.Component {
             <Text key={this.state.key}>{this.state.timestamp && moment(new Date(this.state.timestamp)).format('LLLL')}</Text>
           </View>
         </View>
-
         <AdmobCell />
       </View>
     );

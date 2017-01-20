@@ -52,5 +52,5 @@ AdmobCell.propTypes = {
 AdmobCell.defaultProps = {
   margin: 0,
   bannerSize: 'smartBannerPortrait',
-  refreshInterval: 15000,
+  refreshInterval: 30000,
 };

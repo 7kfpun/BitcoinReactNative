@@ -12,6 +12,7 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
+import { NativeAdsManager } from 'react-native-fbads';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
@@ -20,8 +21,13 @@ import moment from 'moment';
 
 // Components
 import AdmobCell from '../components/admob-cell';
+import FbAdsCell from '../components/fbads-cell';
 
 import rss from '../utils/rss';
+
+import { config } from '../config';
+
+const adsManager = new NativeAdsManager(config.fbads[Platform.OS].native);
 
 const styles = StyleSheet.create({
   container: {
@@ -49,10 +55,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#202020',
   },
   card: {
-    marginVertical: 3,
     padding: 10,
-    paddingVertical: 18,
     backgroundColor: 'white',
+    borderBottomColor: '#CCCCCC',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   title: {
     fontWeight: '400',
@@ -178,13 +184,16 @@ export default class NewsView extends React.Component {
             />
           }
           dataSource={this.state.dataSource}
-          renderRow={item => <TouchableHighlight underlayColor="#EFEFF4" onPress={() => this.openURL(item)}>
-            <View style={styles.card}>
-              <Text style={styles.title}>{item.title && this.removeTag(item.title.content)}</Text>
-              <Text style={styles.body}>{item.published && moment(item.published).fromNow()}</Text>
-              <Text style={styles.body}>{item.content && this.removeTag(item.content.content)}</Text>
-            </View>
-          </TouchableHighlight>}
+          renderRow={(item, secId, rowId) => <View>
+            <TouchableHighlight underlayColor="#EFEFF4" onPress={() => this.openURL(item)}>
+              <View style={styles.card}>
+                <Text style={styles.title}>{item.title && this.removeTag(item.title.content)}</Text>
+                <Text style={styles.body}>{item.published && moment(item.published).fromNow()}</Text>
+                <Text style={styles.body}>{item.content && this.removeTag(item.content.content)}</Text>
+              </View>
+            </TouchableHighlight>
+            {rowId % 10 === 0 && <FbAdsCell adsManager={adsManager} />}
+          </View>}
         />
 
         <AdmobCell />

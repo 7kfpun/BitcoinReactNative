@@ -167,20 +167,6 @@ export default class MoreView extends React.Component {
                 }}
               />
             </Section>
-
-            <Section header={I18n.t('others')}>
-              <Cell
-                cellStyle="Basic"
-                title={I18n.t('view_more_bt_this_developer')}
-                onPress={() => {
-                  if (Platform.OS === 'ios') {
-                    Linking.openURL('https://itunes.apple.com/us/developer/kf-pun/id1116896894');
-                  } else if (Platform.OS === 'android') {
-                    Linking.openURL('https://play.google.com/store/apps/developer?id=Kf');
-                  }
-                }}
-              />
-            </Section>
           </TableView>
 
           <AdmobCell bannerSize="mediumRectangle" />
