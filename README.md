@@ -8,7 +8,7 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 
 [![App Store Button](assets/app-store.png "App Store Button")](https://itunes.apple.com/us/app/bitcoin-calculator/id1123557731?mt=8)
 [![Play Store Button](assets/google-play.png "Google Play Button")](https://play.google.com/store/apps/details?id=com.kfpun.bitcoin)
-[![Apk Download Button](assets/apk-download.png "Apk Download Button")](https://github.com/7kfpun/BitcoinReactNative/releases/download/v1.0.6/app-release.apk)
+[![Apk Download Button](assets/apk-download.png "Apk Download Button")](https://github.com/7kfpun/BitcoinReactNative/releases/download/v1.0.8/app-release.apk)
 
 ## Screenshots
 
