@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#202020',
   },
   footer: {
-    height: 84,
+    height: 92,
     backgroundColor: '#F5F5F5',
     paddingHorizontal: 20,
     borderTopWidth: StyleSheet.hairlineWidth,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#EEEEEE',
   },
   convert: {
-    marginTop: 2,
+    marginTop: 6,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -86,6 +86,18 @@ const styles = StyleSheet.create({
     borderColor: '#30A935',
     borderWidth: 2,
   },
+  arrowDownward: {
+    backgroundColor: '#F4F4F4',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  },
+  arrowUpward: {
+    backgroundColor: '#F4F4F4',
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+  },
 });
 
 export default class MainView extends React.Component {
@@ -100,6 +112,7 @@ export default class MainView extends React.Component {
       btctoothers: true,
       refreshing: false,
       key: Math.random(),
+      isFooterShow: true,
     }, CurrencyStore.getState());
   }
 
@@ -203,7 +216,7 @@ export default class MainView extends React.Component {
           </View>}
         />
 
-        <View style={styles.footer}>
+        {this.state.isFooterShow && <View style={styles.footer}>
           <TouchableOpacity
             onPress={() => this.setState({
               btctoothers: !this.state.btctoothers,
@@ -238,7 +251,17 @@ export default class MainView extends React.Component {
           <View style={styles.timestampBlock}>
             <Text key={this.state.key}>{this.state.timestamp && moment(new Date(this.state.timestamp)).format('LLLL')}</Text>
           </View>
-        </View>
+
+          <TouchableOpacity onPress={() => this.setState({ isFooterShow: false })} style={styles.arrowDownward}>
+            <Icon name="keyboard-arrow-down" size={26} color="gray" />
+          </TouchableOpacity>
+        </View>}
+
+        {!this.state.isFooterShow && <View>
+          <TouchableOpacity onPress={() => this.setState({ isFooterShow: true })} style={styles.arrowUpward}>
+            <Icon name="keyboard-arrow-up" size={26} color="gray" />
+          </TouchableOpacity>
+        </View>}
         <AdmobCell />
       </View>
     );
