@@ -239,4 +239,7 @@ DetailsView.propTypes = {
 
 DetailsView.defaultProps = {
   title: '',
+  currency: '',
+  btctoothers: true,
+  unit: 1,
 };

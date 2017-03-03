@@ -89,7 +89,8 @@ export default class CurrencyCell extends React.Component {
                     style={this.props.bitcoinData[this.props.currency].last > this.props.bitcoinDataPrevious[this.props.currency].last
                               ? styles.priceGreenText
                               : this.props.bitcoinData[this.props.currency].last < this.props.bitcoinDataPrevious[this.props.currency].last
-                              ? styles.priceRedText : null}>
+                              ? styles.priceRedText : null}
+                  >
                     {(this.props.unit * this.props.bitcoinData[this.props.currency].last).toFixed(2)}
                   </Text>
                   {` ${this.props.currency}`}
@@ -111,7 +112,8 @@ export default class CurrencyCell extends React.Component {
                     style={this.props.bitcoinData[this.props.currency].last > this.props.bitcoinDataPrevious[this.props.currency].last
                               ? styles.priceRedText
                               : this.props.bitcoinData[this.props.currency].last < this.props.bitcoinDataPrevious[this.props.currency].last
-                              ? styles.priceGreenText : null}>
+                              ? styles.priceGreenText : null}
+                  >
                     {(this.props.unit / this.props.bitcoinData[this.props.currency].last).toFixed(4)}
                   </Text>
                     {' BTC'}
@@ -125,7 +127,6 @@ export default class CurrencyCell extends React.Component {
 }
 
 CurrencyCell.propTypes = {
-  title: React.PropTypes.string,
   currency: React.PropTypes.string,
   btctoothers: React.PropTypes.bool,
   unit: React.PropTypes.number,
@@ -134,5 +135,9 @@ CurrencyCell.propTypes = {
 };
 
 CurrencyCell.defaultProps = {
-  title: '',
+  currency: '',
+  btctoothers: true,
+  unit: 1,
+  bitcoinData: {},
+  bitcoinDataPrevious: {},
 };

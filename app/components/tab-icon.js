@@ -19,3 +19,8 @@ TabIcon.propTypes = {
   title: React.PropTypes.string,
   selected: React.PropTypes.bool,
 };
+
+TabIcon.defaultProps = {
+  title: '',
+  selected: false,
+};

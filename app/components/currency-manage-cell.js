@@ -44,11 +44,11 @@ export default class CurrencyManageCell extends React.Component {
   }
 
   componentDidMount() {
-    CurrencyStore.listen((state) => this.onCurrencyStoreChange(state));
+    CurrencyStore.listen(state => this.onCurrencyStoreChange(state));
   }
 
   componentWillUnmount() {
-    CurrencyStore.unlisten((state) => this.onCurrencyStoreChange(state));
+    CurrencyStore.unlisten(state => this.onCurrencyStoreChange(state));
   }
 
   onCurrencyStoreChange(state) {
@@ -77,7 +77,7 @@ export default class CurrencyManageCell extends React.Component {
           </View>
           <View style={styles.secondBlock}>
             <Switch
-              onValueChange={(value) => this.toggleCurrency(this.props.currency, value)}
+              onValueChange={value => this.toggleCurrency(this.props.currency, value)}
               value={this.state.currencies.indexOf(this.props.currency) !== -1}
             />
           </View>
@@ -88,11 +88,9 @@ export default class CurrencyManageCell extends React.Component {
 }
 
 CurrencyManageCell.propTypes = {
-  title: React.PropTypes.string,
   currency: React.PropTypes.string,
-  toggleCurrency: React.PropTypes.string,
 };
 
 CurrencyManageCell.defaultProps = {
-  title: '',
+  currency: 'USD',
 };

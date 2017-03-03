@@ -143,9 +143,7 @@ export default class MoreView extends React.Component {
                 onPress={() => Alert.alert(
                   I18n.t('disclaimer'),
                   I18n.t('disclaimer_full'),
-                  [
-                    { text: 'OK', onPress: () => console.log('OK Pressed') },
-                  ]
+                  [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
                 )}
               />
               <Cell
