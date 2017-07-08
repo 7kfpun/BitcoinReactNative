@@ -1,5 +1,5 @@
-module.exports = function bitcoin() {
-  const BITCOIN_AVERAGE_URL = 'https://api.bitcoinaverage.com/ticker/global/all';  // api v1
-  // const BITCOIN_AVERAGE_URL = 'https://apiv2.bitcoinaverage.com/exchanges/all';  // api v2
+module.exports = function bitcoin(currency = 'usd') {
+  const BITCOIN_AVERAGE_URL = `http://api.coindesk.com/v1/bpi/currentprice/${currency}`;
+  console.log(BITCOIN_AVERAGE_URL);
   return fetch(BITCOIN_AVERAGE_URL).then(res => res.json());
 };

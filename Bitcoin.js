@@ -17,6 +17,7 @@ import MoreView from './app/views/more';
 import AddView from './app/views/add';
 import DetailsView from './app/views/details';
 import NewsView from './app/views/news';
+import CalculatorView from './app/views/calculator';
 
 import I18n from './app/utils/i18n';
 import { config } from './app/config';
@@ -38,14 +39,18 @@ console.ignoredYellowBox = [
 const scenes = Actions.create(
   <Scene key="root">
     <Scene key="tabbar" tabs={true} >
-      <Scene key="tab1" title={I18n.t('price')} icon={TabIcon} navigationBarStyle={{ backgroundColor: 'red' }} titleStyle={{ color: 'white' }} >
+      <Scene key="tab0" title={I18n.t('calculator')} icon={TabIcon} initial={true} >
+        <Scene key="calculator" title={I18n.t('calculator')} component={CalculatorView} hideNavBar={true} />
+        <Scene key="tab0more" title={I18n.t('more')} component={MoreView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />
+      </Scene>
+      {/* <Scene key="tab1" title={I18n.t('price')} icon={TabIcon} navigationBarStyle={{ backgroundColor: 'red' }} titleStyle={{ color: 'white' }} >
         <Scene key="main" title={I18n.t('main')} component={MainView} hideNavBar={true} />
         <Scene key="add" title={I18n.t('add')} component={AddView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />
         <Scene key="details" title={I18n.t('details')} component={DetailsView} hideNavBar={true} hideTabBar={true} />
-        <Scene key="more" title={I18n.t('more')} component={MoreView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />
-      </Scene>
+        <Scene key="tab1more" title={I18n.t('more')} component={MoreView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />
+      </Scene> */}
       <Scene key="tab2" title={I18n.t('news')} icon={TabIcon}>
-        <Scene key="news" title={I18n.t('news')} component={NewsView} hideNavBar={true} initial={true} />
+        <Scene key="news" title={I18n.t('news')} component={NewsView} hideNavBar={true} />
       </Scene>
     </Scene>
   </Scene>

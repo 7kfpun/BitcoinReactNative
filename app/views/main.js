@@ -11,7 +11,6 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
-import { AdMobInterstitial } from 'react-native-admob';
 import { NativeAdsManager } from 'react-native-fbads';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -117,13 +116,6 @@ export default class MainView extends React.Component {
   }
 
   componentDidMount() {
-    timer.clearTimeout(this);
-    if (Math.random() > 0.6) {
-      timer.setTimeout(this, 'AdMobInterstitial', () => {
-        AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
-      }, 1000 * 1);
-    }
-
     CurrencyStore.listen(state => this.onCurrencyStoreChange(state));
 
     this.prepareRows();
@@ -150,7 +142,7 @@ export default class MainView extends React.Component {
     if (position === 0) {  // index of 'Add'
       Actions.add();
     } else if (position === 1) {  // index of 'Settings'
-      Actions.more();
+      Actions.tab1more();
     }
   }
 
@@ -167,7 +159,7 @@ export default class MainView extends React.Component {
           statusBar={{ tintColor: '#455A64', style: 'light-content' }}
           style={styles.navigatorBarIOS}
           title={{ title: this.props.title, tintColor: 'white' }}
-          leftButton={<TouchableOpacity onPress={Actions.more}>
+          leftButton={<TouchableOpacity onPress={Actions.tab1more}>
             <Icon style={styles.navigatorLeftButton} name="info-outline" size={26} color="white" />
           </TouchableOpacity>}
           rightButton={<TouchableOpacity onPress={Actions.add}>

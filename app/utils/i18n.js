@@ -26,6 +26,7 @@ I18n.translations = {
     ask: 'Ask:',
     bid: 'Bid:',
     last: 'Last:',
+    calculator: 'Calculator',
   },
   zh: {
     price: '報價',
@@ -50,6 +51,7 @@ I18n.translations = {
     ask: '買入價：',
     bid: '賣出價：',
     last: '最後出價：',
+    calculator: '計算器',
   },
   'zh-CN': {
     price: '报价',
@@ -74,6 +76,7 @@ I18n.translations = {
     ask: '买入价：',
     bid: '卖出价：',
     last: '最后出价：',
+    calculator: '计算器',
   },
 };
 
