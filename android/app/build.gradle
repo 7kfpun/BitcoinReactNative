@@ -90,8 +90,8 @@ android {
         applicationId "com.kfpun.bitcoin"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 11
-        versionName "1.0.8"
+        versionCode 15
+        versionName "1.0.9"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
