@@ -51,9 +51,10 @@ const scenes = Actions.create(
       </Scene> */}
       <Scene key="tab2" title={I18n.t('news')} icon={TabIcon}>
         <Scene key="news" title={I18n.t('news')} component={NewsView} hideNavBar={true} />
+        <Scene key="tab1more" title={I18n.t('more')} component={MoreView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />
       </Scene>
     </Scene>
-  </Scene>
+  </Scene>,
 );
 
 const Bitcoin = function Bitcoin() {

@@ -23,7 +23,7 @@ import moment from 'moment';
 // Flux
 import CurrencyStore from '../stores/currency-store';
 
-import AdmobCell from '../components/admob-cell'
+import AdmobCell from '../components/admob-cell';
 
 import currencies from '../utils/currencies';
 import bitcoin from '../utils/bitcoin';
@@ -105,8 +105,8 @@ export default class CalculatorView extends React.Component {
   }
 
   onActionSelected(position) {
-    if (position === 0) {  // index of 'Done'
-      Actions.pop();
+    if (position === 0) {  // index of 'Settings'
+      Actions.tab0more();
     }
   }
 
@@ -134,6 +134,10 @@ export default class CalculatorView extends React.Component {
   }
 
   checkBitcoin(currency) {
+    if (!currency) {
+      currency = 'usd';
+    }
+
     const that = this;
     bitcoin(currency).then((bitcoinData) => {
       console.log(bitcoinData);
@@ -162,6 +166,10 @@ export default class CalculatorView extends React.Component {
           style={styles.toolbar}
           title={this.props.title}
           titleColor="white"
+          actions={[
+            { title: 'Settings', iconName: 'info-outline', iconSize: 26, show: 'always' },
+          ]}
+          onActionSelected={position => this.onActionSelected(position)}
         />
       );
     }

@@ -87,7 +87,7 @@ export default class NewsView extends React.Component {
 
   onActionSelected(position) {
     if (position === 0) {  // index of 'Settings'
-      Actions.more();
+      Actions.tab1more();
     }
   }
 
@@ -127,7 +127,7 @@ export default class NewsView extends React.Component {
       ['quot', '"'],
     ];
 
-    for (let i = 0, max = entities.length; i < max; ++i) {
+    for (let i = 0, max = entities.length; i < max; i += 1) {
       tempText = tempText.replace(new RegExp(`&${entities[i][0]};`, 'g'), entities[i][1]);
     }
 
@@ -135,7 +135,7 @@ export default class NewsView extends React.Component {
   }
 
   openURL(item) {
-    if (item.link) {
+    if (item.link && item.link.href) {
       Linking.openURL(item.link.href);
     }
   }
@@ -152,7 +152,7 @@ export default class NewsView extends React.Component {
             name="info-outline"
             size={26}
             color="white"
-            onPress={Actions.more}
+            onPress={Actions.tab1more}
           />}
         />
       );
