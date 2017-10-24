@@ -12,23 +12,15 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 
 ## Screenshots
 
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos0.png" width="150">
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos1.png" width="150">
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos2.png" width="150">
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos3.png" width="150">
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos4.png" width="150">
-<br />
+<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos0.png" width="150"> <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos1.png" width="150"> <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos2.png" width="150"> <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos3.png" width="150"> <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotIos4.png" width="150">
 
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid0.png" width="150">
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid1.png" width="150">
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid2.png" width="150">
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid3.png" width="150">
-<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid4.png" width="150">
+
+<img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid0.png" width="150"> <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid1.png" width="150"> <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid2.png" width="150"> <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid3.png" width="150"> <img src="https://raw.github.com/7kfpun/BitcoinReactNative/master/assets/screenshots/screenshotAndroid4.png" width="150">
 
 ## React and React Native version
 
-* [react](https://github.com/facebook/react): 15.3.1
-* [react-native](https://github.com/facebook/react-native): 0.34.1
+* [react](https://github.com/facebook/react)
+* [react-native](https://github.com/facebook/react-native)
 
 ## Plugins used
 
@@ -55,9 +47,10 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 
 #### Clone & install
 
-* Clone this repo `git clone git@github.com:7kfpun/BitcoinReactNative.git`
-* `cd BitcoinReactNative`
-* run `npm install`
+* Clone this repo `$ git clone git@github.com:7kfpun/BitcoinReactNative.git`
+* `$ cd BitcoinReactNative`
+* Copy and config the value `$ cp app/config.example.js app/config.js`
+* Install packages `npm install`
 
 #### iOS
 
