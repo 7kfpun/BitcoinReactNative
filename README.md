@@ -51,6 +51,7 @@ Bitcoin Calculator App written in [React Native](https://github.com/facebook/rea
 * `$ cd BitcoinReactNative`
 * Copy and config the value `$ cp app/config.example.js app/config.js`
 * Install packages `npm install`
+* Run `react-native link` to make sure all packages linked
 
 #### iOS
 
