@@ -12,6 +12,7 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { NativeAdsManager } from 'react-native-fbads';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -33,12 +34,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EFEFF4',
-    marginBottom: 50,
+    ...ifIphoneX({
+      marginBottom: 80,
+    }, {
+      marginBottom: 50,
+    }),
   },
   navigatorBarIOS: {
     backgroundColor: '#455A64',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#37474F',
+    ...ifIphoneX({
+      height: 70,
+      paddingTop: 15,
+    }, {}),
   },
   navigatorLeftButton: {
     paddingTop: 10,

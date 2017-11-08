@@ -12,10 +12,7 @@ import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import TabIcon from './app/components/tab-icon';
 
 // Views
-import MainView from './app/views/main';
 import MoreView from './app/views/more';
-import AddView from './app/views/add';
-import DetailsView from './app/views/details';
 import NewsView from './app/views/news';
 import CalculatorView from './app/views/calculator';
 
@@ -43,12 +40,6 @@ const scenes = Actions.create(
         <Scene key="calculator" title={I18n.t('calculator')} component={CalculatorView} hideNavBar={true} />
         <Scene key="tab0more" title={I18n.t('more')} component={MoreView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />
       </Scene>
-      {/* <Scene key="tab1" title={I18n.t('price')} icon={TabIcon} navigationBarStyle={{ backgroundColor: 'red' }} titleStyle={{ color: 'white' }} >
-        <Scene key="main" title={I18n.t('main')} component={MainView} hideNavBar={true} />
-        <Scene key="add" title={I18n.t('add')} component={AddView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />
-        <Scene key="details" title={I18n.t('details')} component={DetailsView} hideNavBar={true} hideTabBar={true} />
-        <Scene key="tab1more" title={I18n.t('more')} component={MoreView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />
-      </Scene> */}
       <Scene key="tab2" title={I18n.t('news')} icon={TabIcon}>
         <Scene key="news" title={I18n.t('news')} component={NewsView} hideNavBar={true} />
         <Scene key="tab1more" title={I18n.t('more')} component={MoreView} hideNavBar={true} hideTabBar={true} direction="vertical" panHandlers={null} />

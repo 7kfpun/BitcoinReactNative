@@ -3772,6 +3772,10 @@ react-native-i18n@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-0.1.1.tgz#7fdc7512e71c9f5057d5f9ee8d559fc4801a1c14"
 
+react-native-iphone-x-helper@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.0.1.tgz#950dbdaca66f458689a7e9697c5beb9bd53f98f2"
+
 react-native-keep-awake@1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-1.0.7.tgz#4ca2deb2448d1dbfec375d97e1299559a350d81f"

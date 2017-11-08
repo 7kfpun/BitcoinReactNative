@@ -12,6 +12,7 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { Cell, CustomCell, Section, TableView } from 'react-native-tableview-simple';
 import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
@@ -37,6 +38,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#455A64',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#37474F',
+    ...ifIphoneX({
+      height: 70,
+    }, {}),
   },
   navigatorLeftButton: {
     paddingTop: 10,
