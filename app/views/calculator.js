@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ListView,
+  NetInfo,
   Platform,
   StyleSheet,
   Text,
@@ -85,13 +86,23 @@ export default class CalculatorView extends React.Component {
       key: Math.random(),
       value: '0',
       isDecimalPonit: false,
-      rateFloat: 1,
+      rateFloat: null,
+      isConnected: true,
       currency: 'usd',
     }, CurrencyStore.getState());
   }
 
   componentDidMount() {
+    NetInfo.fetch().then((isConnected) => {
+      this.setState({ isConnected });
+    });
+
     const that = this;
+    function handleFirstConnectivityChange(isConnected) {
+      that.setState({ isConnected });
+    }
+    NetInfo.isConnected.addEventListener('change', handleFirstConnectivityChange);
+
     store.get('currency').then((currency) => {
       if (currency) {
         that.setState({ currency });
@@ -189,7 +200,11 @@ export default class CalculatorView extends React.Component {
 
   render() {
     GoogleAnalytics.trackScreenView('calculator');
-    const price = (new Big(this.state.value)).times(this.state.rateFloat).toFixed();
+    let price = '-';
+    if (this.state.isConnected && this.state.rateFloat) {
+      price = (new Big(this.state.value)).times(this.state.rateFloat).toFixed();
+    }
+
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
@@ -203,7 +218,7 @@ export default class CalculatorView extends React.Component {
           <ListView
             horizontal
             dataSource={this.state.dataSource}
-            renderRow={({ currency }) => <TouchableHighlight
+            renderRow={({ currency }) => (<TouchableHighlight
               underlayColor="#EFEFF4"
               onPress={() => {
                 this.setState({ currency });
@@ -214,7 +229,7 @@ export default class CalculatorView extends React.Component {
               <View style={{ flex: 1, height: 30, width: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: 'gray' }}>
                 <Text style={{ color: 'white' }}>{currency}</Text>
               </View>
-            </TouchableHighlight>}
+            </TouchableHighlight>)}
           />
         </View>
         <View style={{ flex: 6 }}>
