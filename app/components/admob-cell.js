@@ -29,11 +29,11 @@ export default class AdmobCell extends React.Component {
     timer.clearTimeout(this);
     timer.setInterval(this, 'adRefresh', () => this.setState({ adRefresh: Math.random() }), this.props.refreshInterval);
 
-    if (Math.random() > 0.3) {
-      timer.setTimeout(this, 'AdMobInterstitial', () => {
-        AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
-      }, 1000 * 1);
-    }
+    // if (Math.random() > 0.3) {
+    //   timer.setTimeout(this, 'AdMobInterstitial', () => {
+    //     AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
+    //   }, 1000 * 1);
+    // }
   }
 
   componentWillUnmount() {
