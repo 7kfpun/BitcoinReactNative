@@ -37,6 +37,7 @@
     "react": "15.3.1",
     "react-native": "0.35.0",
     "react-native-admob": "1.1.5",
+    "react-native-animatable": "^1.2.4",
     "react-native-device-info": "0.9.5",
     "react-native-fbads": "3.1.1",
     "react-native-google-analytics-bridge": "3.1.0",
@@ -47,9 +48,10 @@
     "react-native-router-flux": "3.35.0",
     "react-native-simple-store": "1.1.0",
     "react-native-slider": "0.9.1",
+    "react-native-store-review": "^0.1.5",
     "react-native-tableview-simple": "0.13.0",
     "react-native-timer": "1.1.2",
-    "react-native-vector-icons": "2.1.0"
+    "react-native-vector-icons": "4.2.0"
   },
   "devDependencies": {
     "eslint": "^4.9.0",

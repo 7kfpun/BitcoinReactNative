@@ -18,6 +18,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationBar from 'react-native-navbar';
 import store from 'react-native-simple-store';
 import timer from 'react-native-timer';
+import * as StoreReview from 'react-native-store-review';
 
 import Big from 'big.js';
 import moment from 'moment';
@@ -26,6 +27,7 @@ import moment from 'moment';
 import CurrencyStore from '../stores/currency-store';
 
 import AdmobCell from '../components/admob-cell';
+import Rating from '../components/rating';
 
 import currencies from '../utils/currencies';
 import bitcoin from '../utils/bitcoin';
@@ -75,6 +77,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
 export default class CalculatorView extends React.Component {
   constructor(props) {
     super(props);
@@ -89,6 +92,7 @@ export default class CalculatorView extends React.Component {
       rateFloat: null,
       isConnected: true,
       currency: 'usd',
+      calculateCount: 0,
     }, CurrencyStore.getState());
   }
 
@@ -178,9 +182,11 @@ export default class CalculatorView extends React.Component {
           }}
           style={styles.navigatorBarIOS}
           title={{ title: this.props.title, tintColor: 'white' }}
-          leftButton={<TouchableOpacity onPress={Actions.tab0more}>
-            <Icon style={styles.navigatorLeftButton} name="info-outline" size={26} color="white" />
-          </TouchableOpacity>}
+          leftButton={
+            <TouchableOpacity onPress={Actions.tab0more}>
+              <Icon style={styles.navigatorLeftButton} name="info-outline" size={26} color="white" />
+            </TouchableOpacity>
+          }
         />
       );
     } else if (Platform.OS === 'android') {
@@ -205,11 +211,22 @@ export default class CalculatorView extends React.Component {
       price = (new Big(this.state.value)).times(this.state.rateFloat).toFixed();
     }
 
+    let fontSize;
+    if (price.length < 11) {
+      fontSize = 50;
+    } else if (price.length < 30) {
+      fontSize = 35;
+    } else if (price.length < 60) {
+      fontSize = 30;
+    } else {
+      fontSize = 25;
+    }
+
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
         <View style={{ flex: 4, alignItems: 'flex-end', justifyContent: 'space-around', padding: 14 }}>
-          <Text style={{ fontSize: price.length < 11 ? 50 : 35 }}>{price}</Text>
+          <Text style={{ fontSize, textAlign: 'right' }}>{price}</Text>
           {price.length < 25 && <Text style={{ fontSize: price.length < 15 ? 18 : 14 }}>{this.state.currency.toUpperCase()}</Text>}
           {price.length < 25 && <Text style={{ fontSize: price.length < 15 ? 18 : 14 }}>{`${this.state.value.toString()}${this.state.isDecimalPonit && !this.state.value.toString().includes('.') ? '.' : ''}`}</Text>}
           {price.length < 25 && <Text style={{ fontSize: price.length < 15 ? 18 : 14 }}>{'BTC'}</Text>}
@@ -285,7 +302,16 @@ export default class CalculatorView extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={{ flex: 1, flexDirection: 'row' }}>
-            <TouchableHighlight style={styles.cell} underlayColor="#EFEFF4" onPress={() => this.setState({ value: '0' })}>
+            <TouchableHighlight
+              style={styles.cell}
+              underlayColor="#EFEFF4"
+              onPress={() => {
+                this.setState({
+                  value: '0',
+                  calculateCount: this.state.calculateCount + 1,
+                });
+              }}
+            >
               <View>
                 <Text style={styles.cellText}>AC</Text>
               </View>
@@ -302,6 +328,8 @@ export default class CalculatorView extends React.Component {
             </TouchableHighlight>
           </View>
         </View>
+
+        {this.state.calculateCount > 8 && StoreReview.isAvailable && <Rating />}
 
         <AdmobCell />
       </View>
