@@ -23,8 +23,9 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     top: 200,
-    margin: 15,
-    padding: 15,
+    left: 15,
+    right: 15,
+    padding: 20,
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.95)',
     borderRadius: 10,
