@@ -27,6 +27,9 @@ I18n.translations = {
     bid: 'Bid:',
     last: 'Last:',
     calculator: 'Calculator',
+    rating_title: 'Enjoy Bitcoin Calculator?',
+    rating_description: 'Please give us 5 stars to cheer we up if you like this app.',
+    feedback_description: 'Give us some feedbacks. We will definitely keep improving.',
   },
   zh: {
     price: '報價',
@@ -52,6 +55,9 @@ I18n.translations = {
     bid: '賣出價：',
     last: '最後出價：',
     calculator: '計算器',
+    rating_title: '喜歡「Bitcoin 計算器」嗎？',
+    rating_description: '給我們5顆星以鼓勵我們吧',
+    feedback_description: '我們很需要您給點意見，讓此APP越做越好。',
   },
   'zh-CN': {
     price: '报价',
@@ -77,6 +83,9 @@ I18n.translations = {
     bid: '卖出价：',
     last: '最后出价：',
     calculator: '计算器',
+    rating_title: '喜欢「Bitcoin 计算器」吗？',
+    rating_description: '给我们5颗星以鼓励我们吧',
+    feedback_description: '我们很需要您给点意见，让此APP越做越好。',
   },
 };
 

@@ -14,6 +14,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import store from 'react-native-simple-store';
 import timer from 'react-native-timer';
 
+import I18n from '../utils/i18n';
+
 const STARS_TO_APP_STORE = 4;
 const SHOW_RATING_AFTER = 30 * 60 * 1000;
 
@@ -116,8 +118,8 @@ export default class Rating extends Component {
           <Icon name="clear" size={24} color="#616161" />
         </TouchableOpacity>
         <Icon name="thumb-up" size={32} color="#616161" />
-        <Text style={styles.ratingTitleText}>{'Enjoy Bitcoin Calculator?'}</Text>
-        <Text style={styles.ratingDescriptionText}>{'Please give us 5 stars to cheer we up if you like this app.'}</Text>
+        <Text style={styles.ratingTitleText}>{I18n.t('rating_title')}</Text>
+        <Text style={styles.ratingDescriptionText}>{I18n.t('rating_description')}</Text>
         {this.state.starCount === 0 && <View style={{ flexDirection: 'row' }}>
           <Icon name={this.state.starCount >= 1 ? 'star' : 'star-border'} size={26} color="#616161" onPress={() => this.onStarRatingPress(1)} />
           <Icon name={this.state.starCount >= 2 ? 'star' : 'star-border'} size={26} color="#616161" onPress={() => this.onStarRatingPress(2)} />
@@ -129,7 +131,7 @@ export default class Rating extends Component {
           this.state.starCount < STARS_TO_APP_STORE &&
           <TouchableOpacity onPress={this.openFeedbackUrl}>
             <Animatable.View style={styles.button} animation="fadeIn">
-              <Text style={styles.feedbackDescriptionText}>{'Give us some feedbacks. We will definitely keep improving.'}</Text>
+              <Text style={styles.feedbackDescriptionText}>{I18n.t('feedback_description')}</Text>
             </Animatable.View>
           </TouchableOpacity>}
       </Animatable.View>
