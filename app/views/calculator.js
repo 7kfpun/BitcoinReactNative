@@ -87,7 +87,7 @@ export default class CalculatorView extends React.Component {
     this.state = Object.assign({
       dataSource: this.dataSource.cloneWithRows(currencies),
       key: Math.random(),
-      value: '0',
+      value: '1',
       isDecimalPonit: false,
       rateFloat: null,
       isConnected: true,
@@ -329,7 +329,7 @@ export default class CalculatorView extends React.Component {
           </View>
         </View>
 
-        {this.state.calculateCount > 8 && StoreReview.isAvailable && <Rating />}
+        {this.state.calculateCount > 4 && StoreReview.isAvailable && <Rating />}
 
         <AdmobCell />
       </View>

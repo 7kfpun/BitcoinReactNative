@@ -8,6 +8,7 @@ import {
 
 // 3rd party libraries
 import { AdMobBanner, AdMobInterstitial } from 'react-native-admob';
+import store from 'react-native-simple-store';
 import timer from 'react-native-timer';
 
 import { config } from '../config';
@@ -29,11 +30,13 @@ export default class AdmobCell extends React.Component {
     timer.clearTimeout(this);
     timer.setInterval(this, 'adRefresh', () => this.setState({ adRefresh: Math.random() }), this.props.refreshInterval);
 
-    // if (Math.random() > 0.3) {
-    //   timer.setTimeout(this, 'AdMobInterstitial', () => {
-    //     AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
-    //   }, 1000 * 1);
-    // }
+    store.get('isRatingGiven').then((isRatingGiven) => {
+      if (isRatingGiven && Math.random() > 0.4) {
+        timer.setTimeout(this, 'AdMobInterstitial', () => {
+          AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log(error)));
+        }, 1000 * 1);
+      }
+    });
   }
 
   componentWillUnmount() {
